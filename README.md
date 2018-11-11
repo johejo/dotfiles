@@ -1,2 +1,2 @@
-# dotfiles
-johejo's dotfiles
+# config
+johejo's config
