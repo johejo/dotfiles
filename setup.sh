@@ -27,11 +27,11 @@ if [ $yes = "y" ]; then
 
   rm -f $HOME/.vimrc
   ln -s $TARGET_DIR/vim/.vimrc $HOME/.vimrc
-  echo "Linked $REPO_DIR/vim/.vimrc -> $HOME/.vimrc"
+  echo "Linked $TARGET_DIR/vim/.vimrc -> $HOME/.vimrc"
 
   rm -f $HOME/.tmux.conf
   ln -s $TARGET_DIR/tmux/.tmux.conf $HOME/.tmux.conf
-  echo "Linked $REPO_DIR/tmux/.tmux.conf -> $HOME/.tmux.conf"
+  echo "Linked $TARGET_DIR/tmux/.tmux.conf -> $HOME/.tmux.conf"
 
   echo "Add the following line to your .bashrc (.bash_profile)"
   echo "source $TARGET_DIR/bash/.bashrc"
