@@ -3,6 +3,7 @@ set noswapfile
 set autoread
 set autoindent
 set expandtab
+set smartindent
 set ts=2
 set sw=2
 set sts=2
