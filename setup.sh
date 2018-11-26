@@ -29,6 +29,10 @@ if [ $yes = "y" ]; then
   ln -s $TARGET_DIR/vim/.vimrc $HOME/.vimrc
   echo "Linked $TARGET_DIR/vim/.vimrc -> $HOME/.vimrc"
 
+  rm -rf $HOME/.vim
+  ln -s $TARGET_DIR/vim/.vim $HOME/.vim
+  echo "Linked $TARGET_DIR/vim/.vim -> $HOME/.vim"
+
   rm -f $HOME/.tmux.conf
   ln -s $TARGET_DIR/tmux/.tmux.conf $HOME/.tmux.conf
   echo "Linked $TARGET_DIR/tmux/.tmux.conf -> $HOME/.tmux.conf"

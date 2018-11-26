@@ -19,3 +19,4 @@ set listchars=tab:»-,trail:␣,eol:↲,extends:»,precedes:«,nbsp:%
 if exists('&ambw')
   set ambw=double
 endif
+filetype plugin indent on
