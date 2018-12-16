@@ -11,20 +11,11 @@ alias ymd='date +%F'
 alias ymdhms='date +%FT%T'
 alias ymdhmst='date +%FT%T%:z'
 
-function check_operating_system() {
-  uname -a | grep $1 > /dev/null 2>&1
-  echo $?
-}
-
-is_darwin=`check_operating_system 'Darwin'`
-is_ubuntu=`check_operating_system 'Ubuntu'`
-is_linux=`check_operating_system 'Linux'`
-
 if type git > /dev/null 2>&1; then
   alias diff='git diff --no-index'
 fi
 
-if [ $is_ubuntu = 0 ]; then
+if check_operating_system.sh "Linux"; then
   alias aptup='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
 fi
 
