@@ -12,3 +12,7 @@ export BASH_CONFIG_DIR=$XDG_CONFIG_HOME/bash
 if [ -f $BASH_CONFIG_DIR/.bash_aliases ]; then
   source $BASH_CONFIG_DIR/.bash_aliases
 fi
+
+if [ -f $BASH_CONFIG_DIR/.bash_completion ]; then
+  source $BASH_CONFIG_DIR/.bash_completion
+fi
