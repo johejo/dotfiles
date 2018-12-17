@@ -1,7 +1,7 @@
 export PS1="\W$ "
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$HOME/.local/bin:$PATH
 export PATH=$PATH:$XDG_CONFIG_HOME/scrips
 export LANG="ja_JP.UTF-8"
 export LC_ALL="ja_JP.UTF-8"

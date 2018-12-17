@@ -9,3 +9,11 @@ fi
 if type npm > /dev/null 2>&1; then
   source <(npm completion)
 fi
+
+if type pip3 > /dev/null 2>&1; then
+  source <(pip3 completion --bash)
+fi
+
+if type pipenv > /dev/null 2>&1; then
+  source <(pipenv --completion)
+fi
