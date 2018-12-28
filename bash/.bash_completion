@@ -27,19 +27,35 @@ if type docker-compose > /dev/null 2>&1; then
 fi
 
 if type kubectl > /dev/null 2>&1; then
-  source <(kubectl completion bash)
+  local kubectl_completion=$bash_completion_cache_dir/kubectl
+  if [ ! -f $kubectl_completion ]; then
+    kubectl completion bash > $kubectl_completion
+  fi
+  source $kubectl_completion
 fi
 
 if type npm > /dev/null 2>&1; then
-  source <(npm completion)
+  local npm_completion=$bash_completion_cache_dir/npm
+  if [ ! -f $npm_completion ]; then
+    npm completion > $npm_completion
+  fi
+  source $npm_completion
 fi
 
 if type pip3 > /dev/null 2>&1; then
-  source <(pip3 completion --bash)
+  local pip3_completion=$bash_completion_cache_dir/pip3
+  if [ ! -f $pip3_completion ]; then
+    pip3 completion --bash > $pip3_completion
+  fi
+  source $pip3_completion
 fi
 
 if type pipenv > /dev/null 2>&1; then
-  source <(pipenv --completion)
+  local pipenv_completion=$bash_completion_cache_dir/pipenv
+  if [ ! -f $pipenv_completion ]; then
+    pipenv --completion > $pipenv_completion
+  fi
+  source $pipenv_completion
 fi
 
 }
