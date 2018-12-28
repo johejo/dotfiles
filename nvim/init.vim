@@ -43,6 +43,7 @@ set number
 set list
 set cursorline
 set showmatch
+set whichwrap+=b,s,h,l,<,>,[,]
 set listchars=tab:»-,trail:␣,eol:↲,extends:»,precedes:«,nbsp:%
 if exists('&ambw')
   set ambw=double

@@ -1,5 +1,29 @@
+__source_completion() {
+  local target=$1
+  if [ -f $target ]; then
+    source $target
+  fi
+}
+
+__my_main() {
+
+local bash_completion_cache_dir=$HOME/.cache/bash-completion
+mkdir -p $bash_completion_cache_dir
+
+if type docker > /dev/null 2>&1; then
+    docker_completion=$bash_completion_cache_dir/docker
+    if [ ! -f $docker_completion ]; then
+      curl -sSL https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker > $docker_completion
+    fi
+    __source_completion $docker_completion
+fi
+
 if type docker-compose > /dev/null 2>&1; then
-  source <(curl -sSL https://raw.githubusercontent.com/docker/compose/master/contrib/completion/bash/docker-compose)
+  local docker_compose_completion=$bash_completion_cache_dir/docker-compose
+  if [ ! -f $docker_compose_completion ]; then
+    curl -sSL https://raw.githubusercontent.com/docker/compose/master/contrib/completion/bash/docker-compose > $docker_compose_completion
+  fi
+  __source_completion $docker_compose_completion
 fi
 
 if type kubectl > /dev/null 2>&1; then
@@ -17,3 +41,7 @@ fi
 if type pipenv > /dev/null 2>&1; then
   source <(pipenv --completion)
 fi
+
+}
+
+__my_main
