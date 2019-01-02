@@ -5,17 +5,17 @@ __source_completion() {
   fi
 }
 
-__my_main() {
+__my_bash_completion_() {
 
 local bash_completion_cache_dir=$HOME/.cache/bash-completion
 mkdir -p $bash_completion_cache_dir
 
 if type docker > /dev/null 2>&1; then
-    docker_completion=$bash_completion_cache_dir/docker
-    if [ ! -f $docker_completion ]; then
-      curl -sSL https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker > $docker_completion
-    fi
-    __source_completion $docker_completion
+  docker_completion=$bash_completion_cache_dir/docker
+  if [ ! -f $docker_completion ]; then
+    curl -sSL https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker > $docker_completion
+  fi
+  __source_completion $docker_completion
 fi
 
 if type docker-compose > /dev/null 2>&1; then
@@ -31,7 +31,7 @@ if type kubectl > /dev/null 2>&1; then
   if [ ! -f $kubectl_completion ]; then
     kubectl completion bash > $kubectl_completion
   fi
-  source $kubectl_completion
+  __source_completion $kubectl_completion
 fi
 
 if type npm > /dev/null 2>&1; then
@@ -39,7 +39,7 @@ if type npm > /dev/null 2>&1; then
   if [ ! -f $npm_completion ]; then
     npm completion > $npm_completion
   fi
-  source $npm_completion
+  __source_completion $npm_completion
 fi
 
 if type pip3 > /dev/null 2>&1; then
@@ -47,7 +47,7 @@ if type pip3 > /dev/null 2>&1; then
   if [ ! -f $pip3_completion ]; then
     pip3 completion --bash > $pip3_completion
   fi
-  source $pip3_completion
+  __source_completion $pip3_completion
 fi
 
 if type pipenv > /dev/null 2>&1; then
@@ -55,9 +55,20 @@ if type pipenv > /dev/null 2>&1; then
   if [ ! -f $pipenv_completion ]; then
     pipenv --completion > $pipenv_completion
   fi
-  source $pipenv_completion
+  __source_completion $pipenv_completion
+fi
+
+if type bazel > /dev/null 2>&1; then
+  local bazel_completion=$bash_completion_cache_dir/bazel
+  if [ ! -f $bazel_completion ]; then
+    local bazel_completion_origin=$HOME/.bazel/bin/bazel-complete.bash
+    if [ -f $bazel_completion_origin ]; then
+      cp $bazel_completion_origin $bazel_completion
+    fi
+  fi
+  __source_completion $bazel_completion
 fi
 
 }
 
-__my_main
+__my_bash_completion_

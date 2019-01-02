@@ -11,6 +11,7 @@ export BASH_CONFIG_DIR=$XDG_CONFIG_HOME/bash
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export GO111MODULE=on
+export PATH=$PATH:$HOME/bin
 
 if [ -f $BASH_CONFIG_DIR/.bash_aliases ]; then
   source $BASH_CONFIG_DIR/.bash_aliases
