@@ -49,3 +49,4 @@ if exists('&ambw')
   set ambw=double
 endif
 filetype plugin indent on
+nnoremap <C-]> g<C-]> 

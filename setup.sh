@@ -23,7 +23,7 @@ if [ $yes != "y" ]; then
   exit 1
 fi
 
-for d in "bash" "vim" "nvim" "scrips" "tmux"; do
+for d in "bash" "vim" "nvim" "scrips" "tmux" "ctags"; do
   rm -rf $TARGET_DIR/$d
   ln -s $REPO_DIR/$d $TARGET_DIR/$d
   echo "Linked $REPO_DIR/$d -> $TARGET_DIR/$d"
@@ -40,6 +40,10 @@ echo "Linked $TARGET_DIR/vim/.vim -> $HOME/.vim"
 rm -f $HOME/.tmux.conf
 ln -s $TARGET_DIR/tmux/.tmux.conf $HOME/.tmux.conf
 echo "Linked $TARGET_DIR/tmux/.tmux.conf -> $HOME/.tmux.conf"
+
+rm -f $HOME/.ctags
+ln -s $TARGET_DIR/ctags/.ctags $HOME/.ctags
+echo "Linked $TARGET_DIR/.ctags -> $HOME/.ctags"
 
 echo "Add the following line to your .bashrc (.bash_profile)"
 echo "source $TARGET_DIR/bash/.bashrc"
