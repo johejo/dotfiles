@@ -69,6 +69,22 @@ if type bazel > /dev/null 2>&1; then
   __source_completion $bazel_completion
 fi
 
+if type rustup > /dev/null 2>&1; then
+  local rustup_completion=$bash_completion_cache_dir/rustup
+  if [ ! -f $rustup_completion ]; then
+    rustup completions bash > $rustup_completion
+  fi
+  __source_completion $rustup_completion
+fi
+
+if type cargo > /dev/null 2>&1; then
+  local cargo_completion=$bash_completion_cache_dir/cargo
+  if [ ! -f $cargo_completion ]; then
+    curl -sSL https://raw.githubusercontent.com/rust-lang/cargo/master/src/etc/cargo.bashcomp.sh > $cargo_completion
+  fi
+  __source_completion $cargo_completion
+fi
+
 }
 
 __my_bash_completion_
