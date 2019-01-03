@@ -1,7 +1,6 @@
 #!/bin/sh
 
-arg="$1"
-uname -a | grep $arg > /dev/null 2>&1
+uname -a | grep "$1" > /dev/null 2>&1
 
 ret=$?
 

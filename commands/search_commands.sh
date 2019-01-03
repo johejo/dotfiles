@@ -9,17 +9,17 @@ command_not_found_handle ()
     /usr/share/command-not-found/command-not-found -- "$1"
     return $?
   elif type brew > /dev/null 2>&1; then
-    brew search $1
+    brew search "$1"
     return $?
   else
-    printf "%s: command not found\n" "$1" 1>&2;
+    printf "%s: command not found\\n" "$1" 1>&2;
     return 127
   fi
 }
 
 ./check_commands.sh |
-while read cmd judge; do
-  if [ $judge == "NG" ]; then
-    command_not_found_handle $cmd
+while read -r cmd judge; do
+  if [ "$judge" == "NG" ]; then
+    command_not_found_handle "$cmd"
   fi
 done

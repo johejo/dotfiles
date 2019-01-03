@@ -1,3 +1,3 @@
 #!/bin/sh
 
-openssl rand -base64 $1
+openssl rand -base64 "$1"
