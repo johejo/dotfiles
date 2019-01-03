@@ -1,5 +1,6 @@
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
+on_i = 1
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#auto_complete_delay = 0
@@ -12,7 +13,6 @@ hook_add = '''
   let g:deoplete#max_list = 10000
   inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
 '''
-on_i = 1
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
@@ -32,10 +32,11 @@ on_ft = 'toml'
 
 [[plugins]]
 repo = 'w0rp/ale'
+on_ft = ['python', 'sh']
 hook_add = '''
   let g:ale_linters = {
-\ 'python': ['flake8'],
-\ 'shell': ['shellcheck'],
+\   'python': ['flake8'],
+\   'sh': ['shellcheck'],
 \ }
   let g:ale_linters_explicit = 1
   let g:ale_sign_column_always = 1
@@ -51,4 +52,5 @@ hook_add = '''
   let g:ale_lint_on_text_changed = 'never'
   let g:ale_lint_on_enter = 1
   let g:ale_lint_on_save = 1
+  let g:ale_sign_column_always = 1
 '''
