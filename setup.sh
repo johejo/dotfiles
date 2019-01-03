@@ -11,38 +11,38 @@ if [ $# -ne 2 ]; then
   exit 1
 fi
 
-REPO_DIR=`echo "$1" | sed -e 's|/$||g'`
-TARGET_DIR=`echo "$2" | sed -e 's|/$||g'`
+REPO_DIR=$(echo "$1" | sed -e 's|/$||g')
+TARGET_DIR=$(echo "$2" | sed -e 's|/$||g')
 
 echo "REPO_DIR=$REPO_DIR, TARGET_DIR=$TARGET_DIR"
 echo "Are you OK? (y)"
-read yes
+read -r yes
 
-if [ $yes != "y" ]; then
+if [ "$yes" != "y" ]; then
   echo "Canceled"
   exit 1
 fi
 
 for d in "bash" "vim" "nvim" "scrips" "tmux" "ctags"; do
-  rm -rf $TARGET_DIR/$d
-  ln -s $REPO_DIR/$d $TARGET_DIR/$d
+  rm -rf "${TARGET_DIR:?}/$d"
+  ln -s "${REPO_DIR:?}/$d" "${TARGET_DIR:?}/$d"
   echo "Linked $REPO_DIR/$d -> $TARGET_DIR/$d"
 done
 
-rm -f $HOME/.vimrc
-ln -s $TARGET_DIR/vim/.vimrc $HOME/.vimrc
+rm -f "${HOME:?}/.vimrc"
+ln -s "${TARGET_DIR:?}/vim/.vimrc" "${HOME:?}/.vimrc"
 echo "Linked $TARGET_DIR/vim/.vimrc -> $HOME/.vimrc"
 
-rm -rf $HOME/.vim
-ln -s $TARGET_DIR/vim/.vim $HOME/.vim
+rm -rf "${HOME:?}/.vim"
+ln -s "${TARGET_DIR:?}/vim/.vim" "${HOME:?}/.vim"
 echo "Linked $TARGET_DIR/vim/.vim -> $HOME/.vim"
 
-rm -f $HOME/.tmux.conf
-ln -s $TARGET_DIR/tmux/.tmux.conf $HOME/.tmux.conf
+rm -f "${HOME:?}/.tmux.conf"
+ln -s "${TARGET_DIR:?}/tmux/.tmux.conf" "${HOME:?}/.tmux.conf"
 echo "Linked $TARGET_DIR/tmux/.tmux.conf -> $HOME/.tmux.conf"
 
-rm -f $HOME/.ctags
-ln -s $TARGET_DIR/ctags/.ctags $HOME/.ctags
+rm -f "${HOME:?}/.ctags"
+ln -s "${TARGET_DIR:?}/ctags/.ctags" "${HOME:?}/.ctags"
 echo "Linked $TARGET_DIR/.ctags -> $HOME/.ctags"
 
 echo "Add the following line to your .bashrc (.bash_profile)"
