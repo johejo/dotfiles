@@ -1,4 +1,4 @@
-export PS1="\W$ "
+export PS1="\\W$ "
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export PATH=$HOME/.local/bin:$PATH
@@ -14,10 +14,10 @@ export GO111MODULE=on
 export PATH=$PATH:$HOME/bin
 export TERM=screen-256color
 
-if [ -f $BASH_CONFIG_DIR/.bash_aliases ]; then
-  source $BASH_CONFIG_DIR/.bash_aliases
+if [ -f "${BASH_CONFIG_DIR:?}/.bash_aliases" ]; then
+  source "${BASH_CONFIG_DIR:?}/.bash_aliases"
 fi
 
-if [ -f $BASH_CONFIG_DIR/.bash_completion ]; then
-  source $BASH_CONFIG_DIR/.bash_completion
+if [ -f "${BASH_CONFIG_DIR:?}/.bash_completion" ]; then
+  source "${BASH_CONFIG_DIR:?}/.bash_completion"
 fi
