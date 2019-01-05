@@ -11,8 +11,6 @@ alias ymd='date +%F'
 alias ymdhms='date +%FT%T'
 alias ymdhmst='date +%FT%T%:z'
 
-alias tmux='tmux -2'
-
 if type git > /dev/null 2>&1; then
   alias diff='git diff --no-index'
 fi
