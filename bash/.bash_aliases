@@ -1,4 +1,4 @@
-alias sp='source ~/.bashrc'
+alias es='exec $SHELL'
 
 alias ls='ls --color=auto'
 alias ll='ls -alF'
