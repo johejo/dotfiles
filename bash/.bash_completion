@@ -85,6 +85,14 @@ if type cargo > /dev/null 2>&1; then
   __source_completion "$cargo_completion"
 fi
 
+if type az > /dev/null 2>&1; then
+  local az_completion=$bash_completion_cache_dir/az
+  if [ ! -f "$az_completion" ]; then
+    curl -sSL https://raw.githubusercontent.com/Azure/azure-cli/dev/az.completion > "$az_completion"
+  fi
+  __source_completion "$az_completion"
+fi
+
 }
 
 __my_bash_completion_
