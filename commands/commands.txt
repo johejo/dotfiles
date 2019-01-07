@@ -36,4 +36,5 @@ watch
 wget
 xmllint
 xsel
+yamllint
 zstd

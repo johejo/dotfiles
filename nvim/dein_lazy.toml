@@ -32,11 +32,12 @@ on_ft = 'toml'
 
 [[plugins]]
 repo = 'w0rp/ale'
-on_ft = ['python', 'sh']
+on_ft = ['python', 'sh', 'yaml']
 hook_add = '''
   let g:ale_linters = {
 \   'python': ['flake8'],
 \   'sh': ['shellcheck'],
+\   'yaml': ['yamllint'],
 \ }
   let g:ale_linters_explicit = 1
   let g:ale_sign_column_always = 1
