@@ -101,6 +101,14 @@ if type brew > /dev/null 2>&1; then
   __source_completion "$brew_completion"
 fi
 
+if type hugo > /dev/null 2>&1; then
+  local hugo_completion=$bash_completion_cache_dir/hugo
+  if [ ! -f "$hugo_completion" ]; then
+    hugo gen autocomplete --completionfile "$hugo_completion" > /dev/null 2>&1
+  fi
+  __source_completion "$hugo_completion"
+fi
+
 }
 
 __my_bash_completion_
