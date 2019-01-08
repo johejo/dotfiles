@@ -93,6 +93,14 @@ if type az > /dev/null 2>&1; then
   __source_completion "$az_completion"
 fi
 
+if type brew > /dev/null 2>&1; then
+  local brew_completion=$bash_completion_cache_dir/brew
+  if [ ! -f "$brew_completion" ]; then
+    curl -sSL https://raw.githubusercontent.com/Homebrew/brew/master/completions/bash/brew > "$brew_completion"
+  fi
+  __source_completion "$brew_completion"
+fi
+
 }
 
 __my_bash_completion_
