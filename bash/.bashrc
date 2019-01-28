@@ -10,6 +10,7 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/bin
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$PATH:$XDG_CONFIG_HOME/scrips
+export PIPENV_VENV_IN_PROJECT=true
 
 if type nvim > /dev/null 2>&1; then
   export EDITOR=nvim
