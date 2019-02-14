@@ -109,6 +109,14 @@ if type hugo > /dev/null 2>&1; then
   __source_completion "$hugo_completion"
 fi
 
+if type dbdeployer > /dev/null 2>&1; then
+  local dbdeployer_completion=$bash_completion_cache_dir/dbdeployer
+  if [ ! -f "$dbdeployer_completion" ]; then
+    curl -sSL https://raw.githubusercontent.com/datacharmer/dbdeployer/master/docs/dbdeployer_completion.sh > "$dbdeployer_completion"
+  fi
+  __source_completion "$dbdeployer_completion"
+fi
+
 }
 
 __my_bash_completion_
