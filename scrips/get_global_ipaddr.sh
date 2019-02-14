@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+set -euC
 
 REMOTE_URL="https://httpbin.org/ip"
 IPADDR_PATTERN="([0-9]+.)+[0-9]+" # This is not an appropriate regular expression to match an IP address.

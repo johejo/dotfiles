@@ -1,3 +1,4 @@
+black
 cargo
 clang
 code

@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+set -euC
 
 if type snap > /dev/null 2>&1; then
   snap list --all | grep disabled | awk '{print $1,$3}' |

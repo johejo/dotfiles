@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-command_not_found_handle ()
+set -euC
+
+readonly repo_dir=$(git rev-parse --show-toplevel)
+readonly commands_dir=$repo_dir/commands
+
+handle_command_not_found ()
 {
   if [ -x /usr/lib/command-not-found ]; then
     /usr/lib/command-not-found -- "$1"
@@ -17,9 +22,9 @@ command_not_found_handle ()
   fi
 }
 
-./check_commands.sh |
+"$commands_dir/check_commands.sh" |
 while read -r cmd judge; do
   if [ "$judge" == "NG" ]; then
-    command_not_found_handle "$cmd"
+    handle_command_not_found "$cmd"
   fi
 done

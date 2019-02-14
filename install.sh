@@ -23,6 +23,8 @@ if [ "$yes" != "y" ]; then
   exit 1
 fi
 
+echo
+
 for d in "bash" "vim" "nvim" "scrips" "tmux" "ctags"; do
   rm -rf "${TARGET_DIR:?}/$d"
   ln -s "${REPO_DIR:?}/$d" "${TARGET_DIR:?}/$d"
@@ -45,5 +47,6 @@ rm -f "${HOME:?}/.ctags"
 ln -s "${TARGET_DIR:?}/ctags/.ctags" "${HOME:?}/.ctags"
 echo "Linked $TARGET_DIR/.ctags -> $HOME/.ctags"
 
+echo
 echo "Add the following line to your .bashrc (.bash_profile)"
 echo "source $TARGET_DIR/bash/.bashrc"
