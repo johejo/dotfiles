@@ -24,6 +24,7 @@ if [ "$yes" != "y" ]; then
 fi
 
 echo
+mkdir -p "$TARGET_DIR"
 
 for d in "bash" "vim" "nvim" "scrips" "tmux" "ctags"; do
   rm -rf "${TARGET_DIR:?}/$d"
