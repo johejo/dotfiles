@@ -32,13 +32,17 @@ on_ft = 'toml'
 
 [[plugins]]
 repo = 'w0rp/ale'
-on_ft = ['python', 'sh', 'yaml']
+on_ft = ['python', 'sh']
 hook_add = '''
   let g:ale_linters = {
 \   'python': ['flake8'],
 \   'sh': ['shellcheck'],
-\   'yaml': ['yamllint'],
 \ }
+  let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['black'],
+\   'sh': ['shfmt'],
+\}
   let g:ale_linters_explicit = 1
   let g:ale_sign_column_always = 1
   let g:ale_sign_error = '>>'
@@ -54,4 +58,5 @@ hook_add = '''
   let g:ale_lint_on_enter = 1
   let g:ale_lint_on_save = 1
   let g:ale_sign_column_always = 1
+  let g:ale_fix_on_save = 1
 '''

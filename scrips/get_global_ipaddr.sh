@@ -9,10 +9,10 @@ match_ip() {
   awk -v p="$IPADDR_PATTERN" '{if(match($0,p)) print substr($0, RSTART, RLENGTH)}'
 }
 
-if type curl > /dev/null 2>&1; then
+if type curl >/dev/null 2>&1; then
   curl -sSL $REMOTE_URL | match_ip
-elif type wget > /dev/null 2>&1; then
-  wget -q -O - $REMOTE_URL | match_ip 
+elif type wget >/dev/null 2>&1; then
+  wget -q -O - $REMOTE_URL | match_ip
 else
   echo "'curl' or 'wget' not found."
   exit 1

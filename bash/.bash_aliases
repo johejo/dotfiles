@@ -11,18 +11,18 @@ alias ymd='date +%F'
 alias ymdhms='date +%FT%T'
 alias ymdhmst='date +%FT%T%:z'
 
-if type git > /dev/null 2>&1; then
+if type git >/dev/null 2>&1; then
   alias diff='git diff --no-index'
 fi
 
-if check_operating_system.sh "Linux"; then
+if type apt >/dev/null 2>&1 && uname -s | grep Linux >/dev/null 2>&1; then
   alias aptup='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
 fi
 
-if type snap > /dev/null 2>&1; then
+if type snap >/dev/null 2>&1; then
   alias snaprefesh='sudo snap refresh'
 fi
 
-if type brew > /dev/null 2>&1; then
+if type brew >/dev/null 2>&1; then
   alias brewup='brew update && brew upgrade'
 fi

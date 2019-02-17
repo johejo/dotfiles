@@ -2,21 +2,30 @@ export PS1="\\W$ "
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export LANG="ja_JP.UTF-8"
-export LC_ALL="ja_JP.UTF-8"
 export BASH_CONFIG_DIR=$XDG_CONFIG_HOME/bash
-export GOPATH=$HOME/go
-export GO111MODULE=on
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$HOME/bin
+export PATH=$GOPATH/bin:$PATH
+export PATH=$HOME/bin$PATH
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$PATH:$XDG_CONFIG_HOME/scrips
-export PIPENV_VENV_IN_PROJECT=true
+export PATH=$XDG_CONFIG_HOME/scrips:$PATH
 
-if type nvim > /dev/null 2>&1; then
+if type go >/dev/null 2>&1; then
+  export GOPATH=$HOME/go
+  export GO111MODULE=on
+fi
+
+if type pipnev >/dev/null 2>&1; then
+  export PIPENV_VENV_IN_PROJECT=true
+fi
+
+if type yarn >/dev/null 2>&1; then
+  export PATH=$HOME/.yarn/bin:$PATH
+fi
+
+if type nvim >/dev/null 2>&1; then
   export EDITOR=nvim
-elif type vim > /dev/null 2>&1; then
+elif type vim >/dev/null 2>&1; then
   export EDITOR=vim
-elif type vi > /dev/null 2>&1; then
+elif type vi >/dev/null 2>&1; then
   export EDITOR=vi
 fi
 
