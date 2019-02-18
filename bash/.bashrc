@@ -3,14 +3,13 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export LANG="ja_JP.UTF-8"
 export BASH_CONFIG_DIR=$XDG_CONFIG_HOME/bash
-export PATH=$GOPATH/bin:$PATH
 export PATH=$HOME/bin$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$XDG_CONFIG_HOME/scrips:$PATH
 
 if type go >/dev/null 2>&1; then
   export GOPATH=$HOME/go
-  export GO111MODULE=on
+  export PATH=$GOPATH/bin:$PATH
 fi
 
 if type pipnev >/dev/null 2>&1; then
