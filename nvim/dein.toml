@@ -3,6 +3,11 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]]
 repo = 'tomasr/molokai'
+hook_add = '''
+augroup setcolorscheme
+    autocmd VimEnter * nested colorscheme molokai
+augroup END
+'''
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
