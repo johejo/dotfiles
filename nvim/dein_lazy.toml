@@ -60,3 +60,10 @@ hook_add = '''
   let g:ale_sign_column_always = 1
   let g:ale_fix_on_save = 1
 '''
+
+[[plugins]]
+repo = 'hashivim/vim-terraform'
+on_ft = 'terraform'
+hook_add = '''
+  let g:terraform_fmt_on_save = 1
+'''
