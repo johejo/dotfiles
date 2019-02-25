@@ -32,7 +32,7 @@ on_ft = 'toml'
 
 [[plugins]]
 repo = 'w0rp/ale'
-on_ft = ['python', 'sh', 'terraform']
+on_ft = ['python', 'sh', 'terraform', 'json']
 hook_add = '''
   let g:ale_linters = {
 \   'python': ['flake8'],
@@ -43,6 +43,7 @@ hook_add = '''
 \   'python': ['black'],
 \   'sh': ['shfmt'],
 \   'terraform': ['terraform'],
+\   'json': ['jq'],
 \ }
   let g:ale_linters_explicit = 1
   let g:ale_sign_column_always = 1
@@ -65,3 +66,10 @@ hook_add = '''
 [[plugins]]
 repo = 'hashivim/vim-terraform'
 on_ft = 'terraform'
+
+[[plugins]]
+repo = 'elzr/vim-json'
+on_ft = 'json'
+hook_add = '''
+  let g:vim_json_syntax_conceal = 1
+'''
