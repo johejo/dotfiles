@@ -50,3 +50,4 @@ if exists('&ambw')
 endif
 filetype plugin indent on
 nnoremap <C-]> g<C-]> 
+tnoremap <Esc> <C-\><C-n>
