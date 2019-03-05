@@ -32,11 +32,12 @@ on_ft = 'toml'
 
 [[plugins]]
 repo = 'w0rp/ale'
-on_ft = ['python', 'sh', 'terraform', 'json']
+on_ft = ['python', 'sh', 'terraform', 'json', 'yaml']
 hook_add = '''
   let g:ale_linters = {
 \   'python': ['flake8'],
 \   'sh': ['shellcheck'],
+\   'yaml': ['yamllint'],
 \ }
   let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
