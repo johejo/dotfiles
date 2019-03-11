@@ -10,6 +10,7 @@ export PATH=$XDG_CONFIG_HOME/scrips:$PATH
 if type go >/dev/null 2>&1; then
   export GOPATH=$HOME/go
   export PATH=$GOPATH/bin:$PATH
+  export GO111MODULE=on
 fi
 
 if type pipnev >/dev/null 2>&1; then
