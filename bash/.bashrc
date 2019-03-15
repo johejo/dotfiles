@@ -13,7 +13,7 @@ if type go >/dev/null 2>&1; then
   export GO111MODULE=on
 fi
 
-if type pipnev >/dev/null 2>&1; then
+if type pipenv >/dev/null 2>&1; then
   export PIPENV_VENV_IN_PROJECT=true
 fi
 
