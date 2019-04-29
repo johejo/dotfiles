@@ -1,1 +1,4 @@
 .vscode/
+fish/*
+!fish/config.fish
+!fish/fishfile

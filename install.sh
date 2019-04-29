@@ -26,7 +26,7 @@ fi
 echo
 mkdir -p "$TARGET_DIR"
 
-for d in "bash" "vim" "nvim" "scrips" "tmux" "ctags"; do
+for d in "bash" "vim" "nvim" "scrips" "tmux" "ctags" "fish"; do
   rm -rf "${TARGET_DIR:?}/$d"
   ln -s "${REPO_DIR:?}/$d" "${TARGET_DIR:?}/$d"
   echo "Linked $REPO_DIR/$d -> $TARGET_DIR/$d"
