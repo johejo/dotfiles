@@ -117,6 +117,21 @@ __my_bash_completion_() {
     __source_completion "$dbdeployer_completion"
   fi
 
+  if type kubectx >/dev/null 2>&1; then
+    local kubectx_completion=$bash_completion_cache_dir/kubectx
+    if [ ! -f "$kubectx_completion" ]; then
+      curl -sSL https://raw.githubusercontent.com/ahmetb/kubectx/master/completion/kubectx.bash > "$kubectx_completion"
+    fi
+    __source_completion "$kubectx_completion"
+  fi
+
+  if type kubens >/dev/null 2>&1; then
+    local kubens_completion=$bash_completion_cache_dir/kubens
+    if [ ! -f "$kubens_completion" ]; then
+      curl -sSL https://raw.githubusercontent.com/ahmetb/kubectx/master/completion/kubens.bash > "$kubens_completion"
+    fi
+    __source_completion "$kubens_completion"
+  fi
 }
 
 __my_bash_completion_
