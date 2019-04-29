@@ -1,4 +1,7 @@
-.vscode/
-fish/*
-!fish/config.fish
-!fish/fishfile
+/.vscode/
+/fish/*
+!/fish/functions/
+/fish/functions/*
+!/fish/functions/fzflocate.fish
+!/fish/config.fish
+!/fish/fishfile
