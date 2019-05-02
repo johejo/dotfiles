@@ -3,5 +3,6 @@
 !/fish/functions/
 /fish/functions/*
 !/fish/functions/fzflocate.fish
+!/fish/functions/gi.fish
 !/fish/config.fish
 !/fish/fishfile
