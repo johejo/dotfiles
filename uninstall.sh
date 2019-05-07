@@ -23,7 +23,7 @@ if [ "$yes" != "y" ]; then
   exit 1
 fi
 
-for d in "bash" "vim" "nvim" "scrips" "tmux" "ctags"; do
+for d in "bash" "vim" "nvim" "scrips" "tmux" "ctags" "fish"; do
   unlink "${TARGET_DIR:?}/$d"
   echo "Unlinked $REPO_DIR/$d -> $TARGET_DIR/$d"
 done
