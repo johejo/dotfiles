@@ -80,3 +80,27 @@ hook_add = '''
 [[plugins]]
 repo = 'dag/vim-fish'
 on_ft = 'fish'
+
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
+rev = 'v1.20'
+hook_add = '''
+  let g:go_fmt_command = "goimports"
+  let g:go_def_mapping_enabled = 0
+  let g:go_doc_keywordprg_enabled = 0
+'''
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+build = 'bash install.sh'
+rev = 'next'
+on_ft = 'go'
+hook_add = '''
+  set hidden
+  let g:LanguageClient_serverCommands = {
+\   'go': ['~/go/bin/gopls'],
+\ }
+  nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+'''
