@@ -23,7 +23,7 @@ if [ "$yes" != "y" ]; then
   exit 1
 fi
 
-for d in "bash" "vim" "nvim" "scrips" "tmux" "ctags" "fish"; do
+for d in "bash" "vim" "nvim" "scrips" "tmux" "ctags" "fish" "zsh"; do
   unlink "${TARGET_DIR:?}/$d"
   echo "Unlinked $REPO_DIR/$d -> $TARGET_DIR/$d"
 done
@@ -36,3 +36,9 @@ echo "Unlinked $TARGET_DIR/vim -> $HOME/.vim"
 
 unlink "${HOME:?}/.tmux.conf"
 echo "Unlinked $TARGET_DIR/tmux/.tmux.conf -> $HOME/.tmux.conf"
+
+unlink "${HOME:?}/ctags/.ctags"
+echo "Unlinked $TARGET_DIR/ctags/.ctags -> $HOME/.ctags"
+
+unlink "${HOME:?}/.zshrc"
+echo "Unlinked $TARGET_DIR/zsh/.zshrc -> $HOME/.zshrc"

@@ -26,7 +26,7 @@ fi
 echo
 mkdir -p "$TARGET_DIR"
 
-for d in "bash" "vim" "nvim" "scrips" "tmux" "ctags" "fish"; do
+for d in "bash" "vim" "nvim" "scrips" "tmux" "ctags" "fish" "zsh"; do
   rm -rf "${TARGET_DIR:?}/$d"
   ln -s "${REPO_DIR:?}/$d" "${TARGET_DIR:?}/$d"
   echo "Linked $REPO_DIR/$d -> $TARGET_DIR/$d"
@@ -47,6 +47,9 @@ echo "Linked $TARGET_DIR/tmux/.tmux.conf -> $HOME/.tmux.conf"
 rm -f "${HOME:?}/.ctags"
 ln -s "${TARGET_DIR:?}/ctags/.ctags" "${HOME:?}/.ctags"
 echo "Linked $TARGET_DIR/.ctags -> $HOME/.ctags"
+
+ln -s "${TARGET_DIR:?}/zsh/.zshrc" "${HOME:?}/.zshrc"
+echo "Linked $TARGET_DIR/zsh/.zshrc -> $HOME/.zshrc"
 
 echo
 echo "Add the following line to your .bashrc (.bash_profile)"
