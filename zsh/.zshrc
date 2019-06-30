@@ -1,22 +1,27 @@
+case $(uname -s) in
+  Darwin* )
+    source "$HOME/.config/zsh/.zshrc.darwin";;
+  Linux* )
+    source "$HOME/.config/zsh/.zshrc.linux";;
+esac
+
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-# Set up the prompt
 autoload -Uz promptinit
 promptinit
 
 setopt histignorealldups sharehistory globdots
 
-# Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-# Use modern completion system
 autoload -Uz compinit
 compinit
+autoload -U bashcompinit
+bashcompinit
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -96,5 +101,3 @@ alias grep='grep --color=auto'
 alias ymd='date +%F'
 alias ymdhms='date +%FT%T'
 alias ymdhmst='date +%FT%T%:z'
-
-. "$HOME/.zshenv"

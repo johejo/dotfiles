@@ -48,9 +48,10 @@ rm -f "${HOME:?}/.ctags"
 ln -s "${TARGET_DIR:?}/ctags/.ctags" "${HOME:?}/.ctags"
 echo "Linked $TARGET_DIR/.ctags -> $HOME/.ctags"
 
-ln -s "${TARGET_DIR:?}/zsh/.zshrc" "${HOME:?}/.zshrc"
-echo "Linked $TARGET_DIR/zsh/.zshrc -> $HOME/.zshrc"
-
 echo
 echo "Add the following line to your .bashrc (.bash_profile)"
 echo "source $TARGET_DIR/bash/.bashrc"
+
+echo
+echo "Add the following line to your .zshrc"
+echo "source $TARGET_DIR/zsh/.zshrc"
