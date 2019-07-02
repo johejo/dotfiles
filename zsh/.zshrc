@@ -48,13 +48,13 @@ autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin's installer chunk
 
-zplugin ice wait"0" blockf
+zplugin ice wait"!0" blockf
 zplugin light zsh-users/zsh-completions
 
-zplugin ice wait"0" atload"_zsh_autosuggest_start"
+zplugin ice wait"!0" atload"_zsh_autosuggest_start"
 zplugin light zsh-users/zsh-autosuggestions
 
-zplugin ice wait"0" atinit"zpcompinit; zpcdreplay"
+zplugin ice wait"!0" atinit"zpcompinit; zpcdreplay"
 zplugin light zdharma/fast-syntax-highlighting
 
 zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
@@ -65,8 +65,8 @@ export LANG="ja_JP.UTF-8"
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 
-export PATH="/usr/local/bin:$PATH"
-export PATH=$HOME/bin$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 
 if type go >/dev/null 2>&1; then
