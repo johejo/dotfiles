@@ -1,3 +1,8 @@
+autoload -Uz compinit
+compinit
+autoload -U bashcompinit
+bashcompinit
+
 case $(uname -s) in
   Darwin* )
     source "$HOME/.config/zsh/.zshrc.darwin";;
@@ -17,11 +22,6 @@ bindkey -e
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-
-autoload -Uz compinit
-compinit
-autoload -U bashcompinit
-bashcompinit
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
