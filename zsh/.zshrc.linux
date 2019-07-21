@@ -3,5 +3,7 @@ fpath=(/home/linuxbrew/.linuxbrew/share/zsh-completions $fpath)
 fpath=(/home/linuxbrew/.linuxbrew/share/zsh/functions $fpath)
 fpath=(/home/linuxbrew/.linuxbrew/share/zsh/site-functions $fpath)
 source /home/linuxbrew/.linuxbrew/etc/bash_completion.d/*
+[ -f /home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh ] && source /home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh
+[ -f /home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh ] && source /home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh
 
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
