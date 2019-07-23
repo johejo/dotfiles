@@ -3,6 +3,14 @@ compinit
 autoload -U bashcompinit
 bashcompinit
 
+setopt histignorealldups sharehistory globdots
+
+bindkey -e
+
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
 case $(uname -s) in
   Darwin* )
     source "$HOME/.config/zsh/.zshrc.darwin";;
@@ -14,14 +22,6 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 autoload -Uz promptinit
 promptinit
-
-setopt histignorealldups sharehistory globdots
-
-bindkey -e
-
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
