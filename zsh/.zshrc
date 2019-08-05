@@ -91,6 +91,13 @@ elif type vi >/dev/null 2>&1; then
   export EDITOR=vi
 fi
 
+if type fzf >/dev/null 2>&1; then
+  export FZF_TMUX=1
+  if type fd >/dev/null 2>&1; then
+    export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+  fi
+fi
+
 alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
