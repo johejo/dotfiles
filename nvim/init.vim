@@ -25,7 +25,6 @@ endif
 if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
-
 set nobackup
 set noswapfile
 set autoread
@@ -50,3 +49,6 @@ endif
 filetype plugin indent on
 nnoremap <C-]> g<C-]> 
 tnoremap <Esc> <C-\><C-n>
+
+let g:loaded_matchparen = 1
+set updatetime=100
