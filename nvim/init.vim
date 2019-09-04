@@ -49,6 +49,3 @@ endif
 filetype plugin indent on
 nnoremap <C-]> g<C-]> 
 tnoremap <Esc> <C-\><C-n>
-
-let g:loaded_matchparen = 1
-set updatetime=100
