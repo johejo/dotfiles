@@ -3,14 +3,17 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]]
 repo = 'tomasr/molokai'
-hook_add = '''
-augroup setcolorscheme
-    autocmd VimEnter * nested colorscheme molokai
-augroup END
-'''
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo = 'lifepillar/vim-solarized8'
+hook_add = '''
+augroup setcolorscheme
+    autocmd VimEnter * nested colorscheme solarized8_high
+augroup END
+'''

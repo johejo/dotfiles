@@ -188,7 +188,6 @@ hook_add = '''
   let g:go_highlight_variable_declarations = 1
   let g:go_highlight_variable_assignments = 1
   let g:go_fmt_command = "goimports"
-  let g:go_doc_keywordprg_enabled = 0
   let g:go_auto_sameids = 1
   let g:go_auto_type_info = 1
   let g:go_addtags_transform = "camelcase"
@@ -204,6 +203,5 @@ hook_add = '''
   let g:LanguageClient_serverCommands = {
 \   'go': ['~/go/bin/gopls'],
 \ }
-  nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
   nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 '''
