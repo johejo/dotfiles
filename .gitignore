@@ -6,3 +6,4 @@
 !/fish/functions/gi.fish
 !/fish/config.fish
 !/fish/fishfile
+vim/.vim/autoload/plug.vim
