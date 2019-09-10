@@ -2,18 +2,20 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'tomasr/molokai'
+repo = 'itchyny/lightline.vim'
 
 [[plugins]]
-repo = 'itchyny/lightline.vim'
+repo = 'chrisbra/vim-zsh'
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
 repo = 'lifepillar/vim-solarized8'
 hook_add = '''
-augroup setcolorscheme
-    autocmd VimEnter * nested colorscheme solarized8_high
-augroup END
+  set background=dark
+  colorscheme solarized8_high
 '''

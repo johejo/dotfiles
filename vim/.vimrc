@@ -31,8 +31,6 @@ endif
 
 call plug#begin(expand('~/./plugged'))
 
-Plug 'lifepillar/vim-solarized8'
-
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
