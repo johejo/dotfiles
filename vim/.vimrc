@@ -1,27 +1,75 @@
-set nobackup
-set noswapfile
-set autoread
-set autoindent
-set expandtab
-set smartindent
-set ts=2
-set sw=2
-set sts=2
-set clipboard+=unnamedplus
-syntax enable
+" Search
 set ignorecase
 set smartcase
-set number
-set list
-set cursorline
-set showmatch
-set whichwrap+=b,s,h,l,<,>,[,]
-set listchars=tab:»-,trail:␣,eol:↲,extends:»,precedes:«,nbsp:%
-if exists('&ambw')
-  set ambw=double
+set incsearch
+set nohlsearch
+set wrapscan
+
+" Tab
+set smarttab
+set expandtab
+set tabstop=2
+set softtabstop=2
+
+" Indent
+set autoindent
+set smartindent
+set shiftround
+set shiftwidth=2
+
+" Clipboard
+if (!has('nvim') || $DISPLAY != '') && has('clipboard')
+  if has('unnamedplus')
+    set clipboard& clipboard+=unnamedplus
+  else
+    set clipboard& clipboard+=unnamed
+  endif
 endif
+
+" Enable backspace delete and newline
+set backspace=indent,eol,start
+
+" Highlight of <>
+set matchpairs+=<:>
+
+set hidden
+set lazyredraw
+set updatetime=500
+set isfname-==
+set virtualedit+=block
+
+" Line and View
+set number
+set cursorline
+set list
+set listchars=tab:»-,trail:␣,eol:↲,extends:»,precedes:«,nbsp:%
+set laststatus=2
+set cmdheight=2
+set title
+set showtabline=2
+
+" Spell
+set spelllang=en,cjk
+
+" Line break
+set linebreak
+set showbreak=\
+set breakat=\ \	;:,!?
+set whichwrap+=h,l,<,>,[,],b,s,~
+if exists('+breakindent')
+  set breakindent
+  set wrap
+else
+  set nowrap
+endif
+
+" No backup
+set nowritebackup
+set nobackup
+set noswapfile
+set backupdir-=.
+
 filetype plugin indent on
-nnoremap <C-]> g<C-]>
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -31,6 +79,11 @@ endif
 
 call plug#begin(expand('~/./plugged'))
 
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -53,3 +106,26 @@ if executable('gopls')
 endif
 
 call plug#end()
+
+colorscheme jellybeans
+
+let g:go_highright_functions = 1
+let g:go_highlight_array_whitespace_error = 1
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
+let g:go_fmt_command = "goimports"
+let g:go_auto_sameids = 1
+let g:go_auto_type_info = 1
+let g:go_addtags_transform = "camelcase"

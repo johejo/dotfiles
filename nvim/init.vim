@@ -83,7 +83,7 @@ set virtualedit+=block
 set number
 set cursorline
 set list
-set listchars=tab:▸\ ,trail:-,precedes:«,nbsp:%
+set listchars=tab:»-,trail:␣,eol:↲,extends:»,precedes:«,nbsp:%
 set laststatus=2
 set cmdheight=2
 set title
