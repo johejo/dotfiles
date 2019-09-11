@@ -1,3 +1,15 @@
+if &compatible
+  set nocompatible
+endif
+
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
+if has('vim_starting') && &encoding !=# 'utf-8'
+  set encoding=utf-8
+endif
+
 " Search
 set ignorecase
 set smartcase
@@ -69,6 +81,10 @@ set nobackup
 set noswapfile
 set backupdir-=.
 
+" Key map
+nnoremap <C-j> 5j
+nnoremap <C-k> 5k
+
 filetype plugin indent on
 
 " vim-plug
@@ -80,7 +96,7 @@ endif
 
 call plug#begin(expand('~/./plugged'))
 
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'simeji/winresizer'
 Plug 'itchyny/lightline.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -152,3 +168,9 @@ let g:go_fmt_command = "goimports"
 let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
 let g:go_addtags_transform = "camelcase"
+
+" fzf.vim
+nnoremap <silent> <C-p> :FZF<CR>
+
+" winresizer
+let g:winresizer_start_key = '<C-w><C-w>'
