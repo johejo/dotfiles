@@ -108,3 +108,5 @@ alias grep='grep --color=auto'
 alias ymd='date +%F'
 alias ymdhms='date +%FT%T'
 alias ymdhmst='date +%FT%T%:z'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
