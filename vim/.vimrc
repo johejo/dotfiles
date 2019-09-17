@@ -168,6 +168,7 @@ let g:go_fmt_command = "goimports"
 let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
 let g:go_addtags_transform = "camelcase"
+let g:go_def_mapping_enabled = 0
 
 " fzf.vim
 nnoremap <silent> <C-p> :FZF<CR>
