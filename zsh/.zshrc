@@ -83,7 +83,7 @@ if type yarn >/dev/null 2>&1; then
   export PATH=$HOME/.yarn/bin:$PATH
 fi
 
-elif type vim >/dev/null 2>&1; then
+if type vim >/dev/null 2>&1; then
   export EDITOR=vim
 elif type vi >/dev/null 2>&1; then
   export EDITOR=vi
