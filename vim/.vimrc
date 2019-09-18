@@ -108,6 +108,9 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete-file.vim'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'prabirshrestha/asyncomplete-neosnippet.vim'
 
 call plug#end()
 
@@ -145,6 +148,14 @@ call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options
     \    'max_buffer_size': 5000000,
     \  },
     \ }))
+call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+    \ 'name': 'neosnippet',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+    \ }))
+imap <C-l> <Plug>(neosnippet_expand_or_jump)
+smap <C-l> <Plug>(neosnippet_expand_or_jump)
+xmap <C-l> <Plug>(neosnippet_expand_target)
 
 " vim-go
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
