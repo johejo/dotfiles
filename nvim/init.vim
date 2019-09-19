@@ -25,12 +25,10 @@ let &runtimepath = s:dein_repo_dir .",". &runtimepath
 
 let s:dein_toml = expand($XDG_CONFIG_HOME . '/nvim/dein.toml')
 let s:dein_lazy_toml = expand($XDG_CONFIG_HOME . '/nvim/dein_lazy.toml')
-let s:dein_ft_toml = expand($XDG_CONFIG_HOME . '/nvim/dein_lazy.toml')
 if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir, [s:dein_toml, s:dein_lazy_toml, s:dein_ft_toml])
+  call dein#begin(s:dein_dir, [s:dein_toml, s:dein_lazy_toml])
   call dein#load_toml(s:dein_toml,      {'lazy': 0})
   call dein#load_toml(s:dein_lazy_toml, {'lazy': 1})
-  call dein#load_toml(s:dein_ft_toml)
   call dein#end()
   call dein#save_state()
 endif
@@ -109,3 +107,9 @@ set nowritebackup
 set nobackup
 set noswapfile
 set backupdir-=.
+
+" Key map
+nnoremap <C-j> 5j
+nnoremap <C-k> 5k
+
+filetype plugin indent on

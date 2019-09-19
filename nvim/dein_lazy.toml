@@ -114,6 +114,9 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'chrisbra/vim-zsh'
+
+[[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
@@ -172,6 +175,7 @@ on_ft = 'fish'
 repo = 'fatih/vim-go'
 on_ft = 'go'
 hook_add = '''
+  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
   let g:go_highlight_array_whitespace_error = 1
   let g:go_highlight_chan_whitespace_error = 1
   let g:go_highlight_extra_types = 1
@@ -191,6 +195,7 @@ hook_add = '''
   let g:go_auto_sameids = 1
   let g:go_auto_type_info = 1
   let g:go_addtags_transform = "camelcase"
+  let g:go_def_mapping_enabled = 0
 '''
 
 [[plugins]]

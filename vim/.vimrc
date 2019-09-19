@@ -82,6 +82,8 @@ set noswapfile
 set backupdir-=.
 
 " Key map
+nnoremap j gj
+nnoremap k gk
 nnoremap <C-j> 5j
 nnoremap <C-k> 5k
 
@@ -98,7 +100,7 @@ call plug#begin(expand('~/./plugged'))
 
 Plug 'simeji/winresizer'
 Plug 'itchyny/lightline.vim'
-Plug 'nanotech/jellybeans.vim'
+Plug 'cocopon/iceberg.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'prabirshrestha/async.vim'
@@ -114,7 +116,7 @@ Plug 'prabirshrestha/asyncomplete-neosnippet.vim'
 
 call plug#end()
 
-colorscheme jellybeans
+colorscheme iceberg
 
 " vim-lsp
 if executable('gopls')
@@ -125,13 +127,24 @@ if executable('gopls')
     \ })
   autocmd BufWritePre *.go LspDocumentFormatSync
 endif
+if executable('pyls')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'pyls',
+    \ 'cmd': {server_info->['pyls']},
+    \ 'whitelist': ['python'],
+    \ })
+  endif
+let g:lsp_async_completion = 1
+let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_text_edit_enabled = 0
 
 " asynccomplete.vim
+let g:asyncomplete_auto_popup = 1
+set completeopt=menuone,noinsert,noselect,preview
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-set completeopt+=preview
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
     \ 'name': 'file',
