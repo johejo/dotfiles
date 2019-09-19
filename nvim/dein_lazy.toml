@@ -17,7 +17,7 @@ hook_add = '''
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
-  nnoremap <silent> dfr :Denite file/rec<CR>
+  nnoremap <silent> <C-p> :Denite file/rec<CR>
   nnoremap <silent> db :Denite buffer<CR>
   nnoremap <silent> dfo :Denite file/old<CR>
   autocmd FileType denite call s:denite_my_settings()
@@ -29,6 +29,8 @@ hook_add = '''
     nnoremap <silent><buffer><expr> p
     \ denite#do_map('do_action', 'preview')
     nnoremap <silent><buffer><expr> q
+    \ denite#do_map('quit')
+    nnoremap <silent><buffer><expr> <C-c>
     \ denite#do_map('quit')
     nnoremap <silent><buffer><expr> i
     \ denite#do_map('open_filter_buffer')
@@ -208,5 +210,13 @@ hook_add = '''
   let g:LanguageClient_serverCommands = {
 \   'go': ['~/go/bin/gopls'],
 \ }
-  nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+  function LC_maps()
+    if has_key(g:LanguageClient_serverCommands, &filetype)
+      nnoremap <buffer> <silent> H :call LanguageClient#textDocument_hover()<cr>
+      nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+      nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+    endif
+  endfunction
+
+  autocmd FileType * call LC_maps()
 '''

@@ -5,17 +5,13 @@ repo = 'Shougo/dein.vim'
 repo = 'itchyny/lightline.vim'
 
 [[plugins]]
-repo = 'chrisbra/vim-zsh'
-
-[[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
 repo = 'roxma/nvim-yarp'
 
 [[plugins]]
-repo = 'lifepillar/vim-solarized8'
+repo = 'cocopon/iceberg.vim'
 hook_add = '''
-  set background=dark
-  colorscheme solarized8_high
+  colorscheme iceberg
 '''
