@@ -86,6 +86,8 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <C-j> 5j
 nnoremap <C-k> 5k
+nnoremap <C-h> 0
+nnoremap <C-l> $
 
 filetype plugin indent on
 
@@ -98,7 +100,7 @@ endif
 
 call plug#begin(expand('~/./plugged'))
 
-Plug 'simeji/winresizer'
+Plug 'kana/vim-submode'
 Plug 'itchyny/lightline.vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -110,9 +112,6 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete-file.vim'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'prabirshrestha/asyncomplete-neosnippet.vim'
 
 call plug#end()
 
@@ -161,14 +160,6 @@ call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options
     \    'max_buffer_size': 5000000,
     \  },
     \ }))
-call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
-    \ 'name': 'neosnippet',
-    \ 'whitelist': ['*'],
-    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
-    \ }))
-imap <C-l> <Plug>(neosnippet_expand_or_jump)
-smap <C-l> <Plug>(neosnippet_expand_or_jump)
-xmap <C-l> <Plug>(neosnippet_expand_target)
 
 " vim-go
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
@@ -197,5 +188,12 @@ let g:go_def_mapping_enabled = 0
 " fzf.vim
 nnoremap <silent> <C-p> :FZF<CR>
 
-" winresizer
-let g:winresizer_start_key = '<C-w><C-w>'
+" submode.vim
+call submode#enter_with('winsize', 'n', '', '<C-w><C-l>', '<C-w>>')
+call submode#enter_with('winsize', 'n', '', '<C-w><C-h>', '<C-w><')
+call submode#enter_with('winsize', 'n', '', '<C-w><C-k>', '<C-w>+')
+call submode#enter_with('winsize', 'n', '', '<C-w><C-j>', '<C-w>-')
+call submode#map('winsize', 'n', '', '<C-l>', '<C-w>>')
+call submode#map('winsize', 'n', '', '<C-h>', '<C-w><')
+call submode#map('winsize', 'n', '', '<C-k>', '<C-w>+')
+call submode#map('winsize', 'n', '', '<C-j>', '<C-w>-')
