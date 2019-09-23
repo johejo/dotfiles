@@ -126,17 +126,13 @@ if executable('gopls')
     \ })
   autocmd BufWritePre *.go LspDocumentFormatSync
 endif
-if executable('pyls')
-  au User lsp_setup call lsp#register_server({
-    \ 'name': 'pyls',
-    \ 'cmd': {server_info->['pyls']},
-    \ 'whitelist': ['python'],
-    \ })
-  endif
 let g:lsp_async_completion = 1
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_text_edit_enabled = 0
+nnoremap gd :LspDefinition<CR>
+nnoremap H :LspHover<CR>
+nnoremap <F2> :LspRename<CR>
 
 " asynccomplete.vim
 let g:asyncomplete_auto_popup = 1
@@ -184,6 +180,7 @@ let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
 let g:go_addtags_transform = "camelcase"
 let g:go_def_mapping_enabled = 0
+let g:go_code_completion_enabled = 0
 
 " fzf.vim
 nnoremap <silent> <C-p> :FZF<CR>
