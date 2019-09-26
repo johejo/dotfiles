@@ -30,6 +30,8 @@ hook_add = '''
     \ denite#do_map('do_action', 'preview')
     nnoremap <silent><buffer><expr> q
     \ denite#do_map('quit')
+    nnoremap <silent><buffer><expr> <ESC>
+    \ denite#do_map('quit')
     nnoremap <silent><buffer><expr> <C-c>
     \ denite#do_map('quit')
     nnoremap <silent><buffer><expr> i
@@ -38,9 +40,9 @@ hook_add = '''
     \ denite#do_map('toggle_select').'j'
     nnoremap <silent><buffer><expr> t
     \ denite#do_map('do_action', 'tabopen')
-    nnoremap <silent><buffer><expr> sp
+    nnoremap <silent><buffer><expr> s
     \ denite#do_map('do_action', 'split')
-    nnoremap <silent><buffer><expr> vs
+    nnoremap <silent><buffer><expr> v
     \ denite#do_map('do_action', 'vsplit')
   endfunction
 '''
@@ -174,6 +176,19 @@ repo = 'dag/vim-fish'
 on_ft = 'fish'
 
 [[plugins]]
+repo = 'kana/vim-submode'
+hook_add = '''
+  call submode#enter_with('winsize', 'n', '', '<C-w><C-l>', '<C-w>>')
+  call submode#enter_with('winsize', 'n', '', '<C-w><C-h>', '<C-w><')
+  call submode#enter_with('winsize', 'n', '', '<C-w><C-k>', '<C-w>+')
+  call submode#enter_with('winsize', 'n', '', '<C-w><C-j>', '<C-w>-')
+  call submode#map('winsize', 'n', '', '<C-l>', '<C-w>>')
+  call submode#map('winsize', 'n', '', '<C-h>', '<C-w><')
+  call submode#map('winsize', 'n', '', '<C-k>', '<C-w>+')
+  call submode#map('winsize', 'n', '', '<C-j>', '<C-w>-')
+'''
+
+[[plugins]]
 repo = 'fatih/vim-go'
 on_ft = 'go'
 hook_add = '''
@@ -201,22 +216,53 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-build = 'bash install.sh'
-rev = 'next'
-on_ft = 'go'
-hook_add = '''
-  set hidden
-  let g:LanguageClient_serverCommands = {
-\   'go': ['~/go/bin/gopls'],
-\ }
-  function LC_maps()
-    if has_key(g:LanguageClient_serverCommands, &filetype)
-      nnoremap <buffer> <silent> H :call LanguageClient#textDocument_hover()<cr>
-      nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-      nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-    endif
-  endfunction
+repo = 'prabirshrestha/async.vim'
 
-  autocmd FileType * call LC_maps()
+[[plugins]]
+repo = 'lighttiger2505/deoplete-vim-lsp'
+depends = ['deoplete.nvim']
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+depends= ['async.vim', 'deoplete-vim-lsp']
+on_ft = ['go']
+hook_add = '''
+  if executable('gopls')
+    au User lsp_setup call lsp#register_server({
+      \ 'name': 'gopls',
+      \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+      \ 'whitelist': ['go'],
+      \ })
+    autocmd BufWritePre *.go LspDocumentFormatSync
+  endif
+  let g:lsp_async_completion = 1
+  let g:lsp_diagnostics_enabled = 1
+  let g:lsp_diagnostics_echo_cursor = 1
+  let g:lsp_text_edit_enabled = 0
+  nnoremap gd :LspDefinition<CR>
+  nnoremap H :LspHover<CR>
+  nnoremap <F2> :LspRename<CR>
+  set completeopt-=preview
 '''
+
+#[[plugins]]
+#repo = 'autozimu/LanguageClient-neovim'
+#build = 'bash install.sh'
+#rev = 'next'
+#on_ft = 'go'
+#hook_add = '''
+#  set hidden
+#  let g:LanguageClient_serverCommands = {
+#\   'go': ['~/go/bin/gopls'],
+#\ }
+#  set completeopt-=preview
+#  function LC_maps()
+#    if has_key(g:LanguageClient_serverCommands, &filetype)
+#      nnoremap <buffer> <silent> H :call LanguageClient#textDocument_hover()<cr>
+#      nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+#      nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+#    endif
+#  endfunction
+#
+#  autocmd FileType * call LC_maps()
+#'''
