@@ -31,6 +31,9 @@ done
 unlink "${HOME:?}/.vimrc"
 echo "Unlinked $TARGET_DIR/vim/.vimrc -> $HOME/.vimrc"
 
+unlink "${HOME:?}/.ideavimrc"
+echo "Unlinked $TARGET_DIR/ideavim/.ideavimrc -> $HOME/.ideavimrc"
+
 unlink "${HOME:?}/.vim"
 echo "Unlinked $TARGET_DIR/vim -> $HOME/.vim"
 

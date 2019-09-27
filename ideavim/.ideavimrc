@@ -1,0 +1,22 @@
+" use IDEA Find
+nnoremap / :<C-u>action Find<CR>
+
+" use IDEA jump
+nnoremap <C-o> :<C-u>action Back<CR>
+nnoremap <C-i> :<C-u>action Forward<CR>
+nnoremap <C-S-o> <C-o>
+nnoremap <C-S-i> <C-i>
+
+" go to impl
+nnoremap gi :<C-u>action GotoImplementation<CR>
+
+nnoremap j gj
+nnoremap k gk
+nnoremap <C-j> 5j
+nnoremap <C-k> 5k
+nnoremap <C-h> 0
+nnoremap <C-l> $
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
+set backspace=indent,eol,start

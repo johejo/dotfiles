@@ -57,7 +57,7 @@ set shiftround
 set shiftwidth=2
 
 " Clipboard
-if (!has('nvim') || $DISPLAY != '') && has('clipboard')
+if has('clipboard')
   if has('unnamedplus')
      set clipboard& clipboard+=unnamedplus
   else
@@ -113,5 +113,7 @@ nnoremap <C-j> 5j
 nnoremap <C-k> 5k
 nnoremap <C-h> 0
 nnoremap <C-l> $
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 filetype plugin indent on
