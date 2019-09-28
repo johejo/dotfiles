@@ -109,6 +109,8 @@ set noswapfile
 set backupdir-=.
 
 " Key map
+nnoremap j gj
+nnoremap k gk
 nnoremap <C-j> 5j
 nnoremap <C-k> 5k
 nnoremap <C-h> 0

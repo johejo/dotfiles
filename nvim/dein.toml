@@ -18,7 +18,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'kana/vim-submode'
-hook_post_source = '''
+hook_add = '''
   call submode#enter_with('winsize', 'n', '', '<C-w><C-l>', '<C-w>>')
   call submode#enter_with('winsize', 'n', '', '<C-w><C-h>', '<C-w><')
   call submode#enter_with('winsize', 'n', '', '<C-w><C-k>', '<C-w>+')

@@ -176,6 +176,42 @@ repo = 'dag/vim-fish'
 on_ft = 'fish'
 
 [[plugins]]
+repo = 'godlygeek/tabular'
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft = 'markdown'
+hook_add = '''
+  let g:vim_markdown_folding_disabled = 1
+'''
+
+[[plugins]]
+repo = 'previm/previm'
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'pangloss/vim-javascript'
+on_ft = ['javascript', 'typescript']
+
+[[plugins]]
+repo = 'HerringtonDarkholme/yats.vim'
+on_ft = ['typescript']
+
+[[plugins]]
+repo = 'maxmellon/vim-jsx-pretty'
+on_ft = ['javascript', 'typescript']
+depends = ['vim-javascript', 'yats.vim']
+hook_add = '''
+  let g:vim_jsx_pretty_colorful_config = 1
+  let g:vim_jsx_pretty_enable_jsx_highlight = 1
+'''
+
+[[plugins]]
 repo = 'fatih/vim-go'
 on_ft = 'go'
 hook_add = '''
@@ -212,7 +248,7 @@ depends = ['deoplete.nvim']
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
 depends= ['async.vim', 'deoplete-vim-lsp']
-on_ft = ['go']
+on_ft = ['go', 'typescript', 'dockerfile', 'yaml', 'sh']
 hook_add = '''
   if executable('gopls')
     au User lsp_setup call lsp#register_server({
@@ -221,6 +257,34 @@ hook_add = '''
       \ 'whitelist': ['go'],
       \ })
     autocmd BufWritePre *.go LspDocumentFormatSync
+  endif
+  if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+      \ 'name': 'typescript-language-server',
+      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+      \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+      \ 'whitelist': ['typescript', 'typescript.tsx'],
+      \ })
+  if executable('docker-langserver')
+    au User lsp_setup call lsp#register_server({
+      \ 'name': 'docker-langserver',
+      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+      \ 'whitelist': ['dockerfile'],
+      \ })
+  endif
+  if executable('yaml-language-server')
+    au User lsp_setup call lsp#register_server({
+      \ 'name': 'yaml-language-server',
+      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'yaml-language-server --stdio']},
+      \ 'whitelist': ['dockerfile'],
+      \ })
+  endif
+  if executable('bash-language-server')
+    au User lsp_setup call lsp#register_server({
+      \ 'name': 'bash-language-server',
+      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
+      \ 'whitelist': ['sh'],
+      \ })
   endif
   let g:lsp_async_completion = 1
   let g:lsp_diagnostics_enabled = 1
@@ -232,24 +296,7 @@ hook_add = '''
   set completeopt-=preview
 '''
 
-#[[plugins]]
-#repo = 'autozimu/LanguageClient-neovim'
-#build = 'bash install.sh'
-#rev = 'next'
-#on_ft = 'go'
-#hook_add = '''
-#  set hidden
-#  let g:LanguageClient_serverCommands = {
-#\   'go': ['~/go/bin/gopls'],
-#\ }
-#  set completeopt-=preview
-#  function LC_maps()
-#    if has_key(g:LanguageClient_serverCommands, &filetype)
-#      nnoremap <buffer> <silent> H :call LanguageClient#textDocument_hover()<cr>
-#      nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-#      nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-#    endif
-#  endfunction
-#
-#  autocmd FileType * call LC_maps()
-#'''
+[[plugins]]
+repo = 'ryanolsonx/vim-lsp-typescript'
+on_ft = ['typescript']
+depends = ['vim-lsp']
