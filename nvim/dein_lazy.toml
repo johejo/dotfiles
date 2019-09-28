@@ -125,8 +125,8 @@ repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
 [[plugins]]
-repo = 'w0rp/ale'
-on_ft = ['python', 'sh', 'terraform', 'json', 'yaml', 'dockerfile','make']
+repo = 'dense-analysis/ale'
+on_ft = ['python', 'sh', 'terraform', 'json', 'yaml', 'dockerfile','make', 'javascript', 'typescript']
 hook_add = '''
   let g:ale_linters = {
 \   'python': ['flake8'],
@@ -134,6 +134,8 @@ hook_add = '''
 \   'yaml': ['yamllint'],
 \   'dockerfile': ['hadolint'],
 \   'make': ['checkmake'],
+\   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
 \ }
   let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -141,6 +143,8 @@ hook_add = '''
 \   'sh': ['shfmt'],
 \   'terraform': ['terraform'],
 \   'json': ['jq'],
+\   'javascript': ['prettier'],
+\   'typescript': ['prettier'],
 \ }
   let g:ale_linters_explicit = 1
   let g:ale_sign_column_always = 1
@@ -300,3 +304,17 @@ hook_add = '''
 repo = 'ryanolsonx/vim-lsp-typescript'
 on_ft = ['typescript']
 depends = ['vim-lsp']
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+on_ft = ['html', 'javascript.jsx', 'typescript.tsx']
+hook_add = '''
+  let g:user_emmet_settings = {
+  \  'javascript': {
+  \      'extends': 'jsx',
+  \  },
+  \  'typescript': {
+  \      'extends': 'jsx',
+  \  },
+  \}
+'''
