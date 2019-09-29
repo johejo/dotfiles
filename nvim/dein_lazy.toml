@@ -46,6 +46,9 @@ hook_add = '''
     \ denite#do_map('do_action', 'vsplit')
   endfunction
 '''
+hook_post_source = '''
+  call denite#custom#option('_', {'split': 'floating'})
+'''
 
 [[plugins]]
 repo = 'Shougo/defx.nvim'
