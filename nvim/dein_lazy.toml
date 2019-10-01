@@ -17,9 +17,9 @@ hook_add = '''
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
-  nnoremap <silent> <C-p> :Denite file/rec<CR>
+  nnoremap <silent> <C-p> :Denite file/old<CR>
+  nnoremap <silent> <C-m> :Denite file/rec<CR>
   nnoremap <silent> db :Denite buffer<CR>
-  nnoremap <silent> dfo :Denite file/old<CR>
   autocmd FileType denite call s:denite_my_settings()
   function! s:denite_my_settings() abort
     nnoremap <silent><buffer><expr> <CR>
@@ -79,8 +79,7 @@ hook_add = '''
     nnoremap <silent><buffer><expr> M
     \ defx#do_action('new_multiple_files')
     nnoremap <silent><buffer><expr> C
-    \ defx#do_action('toggle_columns',
-    \                'mark:indent:icon:filename:type:size:time')
+    \ defx#do_action('toggle_columns', 'mark:indent:icon:filename:type:size:time')
     nnoremap <silent><buffer><expr> S
     \ defx#do_action('toggle_sort', 'time')
     nnoremap <silent><buffer><expr> d
@@ -277,13 +276,6 @@ hook_add = '''
     au User lsp_setup call lsp#register_server({
       \ 'name': 'docker-langserver',
       \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
-      \ 'whitelist': ['dockerfile'],
-      \ })
-  endif
-  if executable('yaml-language-server')
-    au User lsp_setup call lsp#register_server({
-      \ 'name': 'yaml-language-server',
-      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'yaml-language-server --stdio']},
       \ 'whitelist': ['dockerfile'],
       \ })
   endif

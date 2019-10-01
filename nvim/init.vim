@@ -117,5 +117,6 @@ nnoremap <C-h> 0
 nnoremap <C-l> $
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
+nnoremap <silent> <C-s> :source ~/.config/nvim/init.vim<CR> :echo 'reloaded'<CR>
 
 filetype plugin indent on
