@@ -238,7 +238,6 @@ hook_add = '''
   let g:go_highlight_variable_declarations = 1
   let g:go_highlight_variable_assignments = 1
   let g:go_fmt_command = "goimports"
-  let g:go_auto_sameids = 1
   let g:go_auto_type_info = 1
   let g:go_addtags_transform = "camelcase"
   let g:go_def_mapping_enabled = 0
@@ -289,7 +288,7 @@ hook_add = '''
   let g:lsp_async_completion = 1
   let g:lsp_diagnostics_enabled = 1
   let g:lsp_diagnostics_echo_cursor = 1
-  let g:lsp_text_edit_enabled = 0
+  let g:lsp_text_edit_enabled = 1
   nnoremap gd :LspDefinition<CR>
   nnoremap H :LspHover<CR>
   nnoremap <F2> :LspRename<CR>
