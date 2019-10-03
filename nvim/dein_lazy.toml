@@ -48,6 +48,8 @@ hook_add = '''
 '''
 hook_post_source = '''
   call denite#custom#option('_', {'split': 'floating'})
+  call denite#custom#source('file', 'matchers',
+      \ ['converter/abbr_word', 'matcher/fuzzy'])
 '''
 
 [[plugins]]
