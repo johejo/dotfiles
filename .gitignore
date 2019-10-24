@@ -8,3 +8,4 @@
 !/fish/fishfile
 vim/.vim/autoload/plug.vim
 vim/.vim/.netrwhist
+nvim/.netrwhist
