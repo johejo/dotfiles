@@ -140,6 +140,7 @@ hook_add = '''
 \   'make': ['checkmake'],
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
+\   'typescriptreact': ['eslint'],
 \ }
   let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -147,8 +148,9 @@ hook_add = '''
 \   'sh': ['shfmt'],
 \   'terraform': ['terraform'],
 \   'json': ['jq'],
-\   'javascript': ['prettier'],
-\   'typescript': ['prettier'],
+\   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
+\   'typescriptreact': ['eslint'],
 \ }
   let g:ale_linters_explicit = 1
   let g:ale_sign_column_always = 1
