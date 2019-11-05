@@ -50,14 +50,16 @@ autoload -Uz _zplugin
 
 zplugin ice wait"!0" blockf
 zplugin light zsh-users/zsh-completions
-
+zplugin load zdharma/history-search-multi-word
 zplugin ice wait"!0" atload"_zsh_autosuggest_start"
 zplugin light zsh-users/zsh-autosuggestions
+zplugin load agkozak/zsh-z
 
 zplugin ice wait"!0" atinit"zpcompinit; zpcdreplay"
 zplugin light zdharma/fast-syntax-highlighting
 
-zplugin ice pick"async.zsh" src"pure.zsh"; zplugin light sindresorhus/pure
+zplugin ice pick"async.zsh" src"pure.zsh"
+zplugin light sindresorhus/pure
 prompt pure
 
 export LANG="ja_JP.UTF-8"
@@ -98,15 +100,31 @@ if type fzf >/dev/null 2>&1; then
   fi
 fi
 
-alias ls='ls --color=auto'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 alias grep='grep --color=auto'
 
 alias ymd='date +%F'
 alias ymdhms='date +%FT%T'
 alias ymdhmst='date +%FT%T%:z'
+
+if type diff-so-fancy >/dev/null 2>&1; then
+  alias diff="diff-so-fancy"
+fi
+
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+
+if type bat >/dev/null 2>&1; then
+  alias cat="bat"
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
+
+if type exa >/dev/null 2>&1; then
+  alias ls="exa"
+  alias l="exa"
+  alias ll="exa -lahF"
+fi
+
+if type fd >/dev/null 2>&1; then
+  alias find="fd"
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

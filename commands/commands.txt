@@ -1,12 +1,16 @@
 az
+bat
 black
 cargo
 clang
 code
 ctags
 curl
+diff-so-fancy
 docker
 docker-compose
+exa
+fd
 flake8
 fzf
 gawk

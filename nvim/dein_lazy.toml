@@ -92,6 +92,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'chrisbra/vim-zsh'
+on_ft = 'zsh'
 
 [[plugins]]
 repo = 'cespare/vim-toml'
@@ -99,11 +100,13 @@ on_ft = 'toml'
 
 [[plugins]]
 repo = 'dense-analysis/ale'
-on_ft = ['python', 'sh', 'terraform', 'json', 'yaml', 'dockerfile', 'make', 'javascript', 'typescript', 'typescriptreact']
+on_ft = ['python', 'sh', 'terraform', 'json', 'yaml', 'dockerfile', 'make', 'javascript', 'typescript', 'typescriptreact', 'bash', 'zsh']
 hook_add = '''
   let g:ale_linters = {
 \   'python': ['flake8'],
 \   'sh': ['shellcheck'],
+\   'bash': ['shellcheck'],
+\   'zsh': ['shellcheck'],
 \   'yaml': ['yamllint'],
 \   'dockerfile': ['hadolint'],
 \   'make': ['checkmake'],
@@ -115,6 +118,8 @@ hook_add = '''
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['black'],
 \   'sh': ['shfmt'],
+\   'bash': ['shfmt'],
+\   'zsh': ['shfmt'],
 \   'terraform': ['terraform'],
 \   'json': ['jq'],
 \   'javascript': ['eslint'],
@@ -226,37 +231,69 @@ depends = ['deoplete.nvim']
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
 depends= ['async.vim', 'deoplete-vim-lsp']
-on_ft = ['go', 'typescript', 'dockerfile', 'yaml', 'sh', 'typescriptreact']
+on_ft = ['go', 'typescript', 'dockerfile', 'sh', 'typescriptreact', 'sql', 'python', 'bash']
 hook_add = '''
   if executable('gopls')
-    au User lsp_setup call lsp#register_server({
-      \ 'name': 'gopls',
-      \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-      \ 'whitelist': ['go'],
-      \ })
-    autocmd BufWritePre *.go LspDocumentFormatSync
+    augroup LspGo
+      au!
+      autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ 'workspace_config': {'gopls': {'staticcheck': v:true}},
+        \ })
+    augroup END
   endif
   if executable('typescript-language-server')
-    au User lsp_setup call lsp#register_server({
-      \ 'name': 'typescript-language-server',
-      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-      \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
-      \ 'whitelist': ['typescript', 'typescript.tsx', 'typescriptreact'],
-      \ })
+    augroup LspTypeScript
+      au!
+      autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+        \ 'whitelist': ['typescript', 'typescript.tsx', 'typescriptreact'],
+        \ })
+    augroup END
   endif
   if executable('docker-langserver')
-    au User lsp_setup call lsp#register_server({
-      \ 'name': 'docker-langserver',
-      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
-      \ 'whitelist': ['dockerfile'],
-      \ })
+    augroup LspDocker
+      au!
+      autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'docker-langserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+        \ 'whitelist': ['dockerfile'],
+        \ })
+    augroup END
   endif
   if executable('bash-language-server')
-    au User lsp_setup call lsp#register_server({
-      \ 'name': 'bash-language-server',
-      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
-      \ 'whitelist': ['sh'],
-      \ })
+    augroup LspBash
+      au!
+      autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'bash-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
+        \ 'whitelist': ['sh', 'bash', 'zsh'],
+        \ })
+    augroup END
+  endif
+  if executable('sql-language-server')
+    augroup LspSQL
+      au!
+      autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'sql-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'sql-language-server up --method stdio']},
+        \ 'whitelist': ['sql'],
+        \ })
+    augroup END
+  endif
+  if executable('pyls')
+    augroup LspPython
+      au!
+      autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+    augroup END
   endif
   let g:lsp_async_completion = 1
   let g:lsp_diagnostics_enabled = 1
