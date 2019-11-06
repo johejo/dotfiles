@@ -88,6 +88,7 @@ nnoremap <C-j> 5j
 nnoremap <C-k> 5k
 nnoremap <C-h> 0
 nnoremap <C-l> $
+nnoremap <Space>f :w<CR>
 
 filetype plugin indent on
 
@@ -105,6 +106,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'liuchengxu/vim-clap'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -112,6 +114,12 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete-file.vim'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'mattn/sonictemplate-vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'previm/previm'
+Plug 'tyru/open-browser.vim'
+Plug 'chr4/nginx.vim'
 
 call plug#end()
 
@@ -119,12 +127,15 @@ colorscheme iceberg
 
 " vim-lsp
 if executable('gopls')
-  au User lsp_setup call lsp#register_server({
-    \ 'name': 'gopls',
-    \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-    \ 'whitelist': ['go'],
-    \ })
-  autocmd BufWritePre *.go LspDocumentFormatSync
+  augroup LspGo
+    au!
+    autocmd User lsp_setup call lsp#register_server({
+      \ 'name': 'gopls',
+      \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+      \ 'whitelist': ['go'],
+      \ 'workspace_config': {'gopls': {'staticcheck': v:true}},
+      \ })
+  augroup END
 endif
 let g:lsp_async_completion = 1
 let g:lsp_diagnostics_enabled = 1
@@ -182,8 +193,9 @@ let g:go_addtags_transform = "camelcase"
 let g:go_def_mapping_enabled = 0
 let g:go_code_completion_enabled = 0
 
-" fzf.vim
-nnoremap <silent> <C-p> :FZF<CR>
+" vim-clap
+nnoremap <silent> <C-p> :Clap history ++externalfilter=fzf<CR>
+nnoremap <silent> .. :Clap files ++externalfilter=fzf<CR>
 
 " submode.vim
 call submode#enter_with('winsize', 'n', '', '<C-w><C-l>', '<C-w>>')

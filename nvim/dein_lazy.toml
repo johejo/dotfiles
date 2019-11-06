@@ -18,7 +18,7 @@ hook_add = '''
 repo = 'Shougo/denite.nvim'
 hook_add = '''
   nnoremap <silent> <C-p> :Denite file/old<CR>
-  nnoremap <silent> <C-m> :Denite file/rec<CR>
+  nnoremap <silent> .. :Denite file/rec<CR>
   nnoremap <silent> db :Denite buffer<CR>
   autocmd FileType denite call s:denite_my_settings()
   function! s:denite_my_settings() abort
@@ -35,11 +35,42 @@ hook_add = '''
     nnoremap <silent><buffer><expr> v denite#do_map('do_action', 'vsplit')
   endfunction
 '''
-hook_post_source = '''
-  call denite#custom#option('_', {'split': 'floating'})
-  call denite#custom#source('file', 'matchers',
-      \ ['converter/abbr_word', 'matcher/fuzzy'])
+hook_source = '''
+  call denite#custom#option('default', {
+      \ 'highlight_filter_background': 'CursorLine',
+      \ 'source_names': 'short',
+      \ 'split': 'floating',
+      \ })
+  if executable('rg')
+    call denite#custom#var('file/rec', 'command',
+          \ ['rg', '--files', '--glob', '!.git'])
+    call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
+    call denite#custom#var('grep', 'recursive_opts', [])
+    call denite#custom#var('grep', 'final_opts', [])
+    call denite#custom#var('grep', 'separator', ['--'])
+    call denite#custom#var('grep', 'default_opts',
+          \ ['-i', '--vimgrep', '--no-heading'])
+  endif
+
+  call denite#custom#source('file/old', 'matchers',
+      \ ['matcher/fruzzy', 'matcher/project_files'])
+  call denite#custom#source('tag', 'matchers', ['matcher/substring'])
+  call denite#custom#source('file/rec', 'matchers',
+      \ ['matcher/fruzzy'])
+
+  call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+  call denite#custom#var('file/rec/git', 'command',
+      \ ['git', 'ls-files', '-co', '--exclude-standard'])
+  call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
+      \ [ '.git/', '.ropeproject/', '__pycache__/',
+      \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
 '''
+
+[[plugins]]
+repo = 'raghur/fruzzy'
+on_source = ['denite.nvim']
+hook_source = 'let g:fruzzy#sortonempty = 0'
+hook_post_update = 'call fruzzy#install()'
 
 [[plugins]]
 repo = 'Shougo/defx.nvim'
@@ -330,3 +361,7 @@ on_ft = ['nginx']
 
 [[plugins]]
 repo = 't9md/vim-choosewin'
+
+[[plugins]]
+repo = 'mattn/sonictemplate-vim'
+on_ft = ['go']
