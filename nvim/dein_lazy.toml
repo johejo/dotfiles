@@ -349,7 +349,7 @@ depends = ['vim-lsp']
 
 [[plugins]]
 repo = 'mattn/emmet-vim'
-on_ft = ['html', 'javascript.jsx', 'typescript.tsx']
+on_ft = ['html', 'javascript.jsx', 'typescript.tsx', 'typescriptreact']
 hook_add = '''
   let g:user_emmet_settings = {
   \  'javascript': {
