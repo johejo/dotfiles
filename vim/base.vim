@@ -86,6 +86,8 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <C-j> 5j
 nnoremap <C-k> 5k
+vnoremap <C-j> 5j
+vnoremap <C-k> 5k
 nnoremap <C-h> 0
 nnoremap <C-l> $
 nnoremap <C-s> %
