@@ -13,7 +13,7 @@ if executable('gopls')
       \     'completionDocumentation': v:true,
       \     'watchFileChanges': v:true,
       \     'deepCompletion': v:true,
-      \     'hoverKind': 'SingleLine',
+      \     'hoverKind': 'FullDocumentation',
       \   }},
       \ })
     autocmd FileType go setlocal omnifunc=lsp#complete

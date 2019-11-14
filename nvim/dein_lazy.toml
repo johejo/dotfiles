@@ -96,6 +96,7 @@ hook_add = '''
 [[plugins]]
 repo = 'fatih/vim-go'
 on_ft = 'go'
+depends = 'vim-lsp'
 hook_add = '''
   source ~/.config/vim/go.vim
 '''
@@ -113,6 +114,16 @@ depends = ['async.vim', 'deoplete-vim-lsp']
 on_ft = ['go', 'typescript', 'dockerfile', 'sh', 'typescriptreact', 'sql', 'python', 'bash']
 hook_add = '''
   source ~/.config/vim/lsp.vim
+'''
+hook_post_source = '''
+  augroup LspEnable
+    autocmd!
+    autocmd BufWinEnter *.go  :call lsp#enable()
+    autocmd BufWinEnter *.py  :call lsp#enable()
+    autocmd BufWinEnter *.ts  :call lsp#enable()
+    autocmd BufWinEnter *.tsx :call lsp#enable()
+    autocmd BufWinEnter *.js  :call lsp#enable()
+  augroup END
 '''
 
 [[plugins]]
