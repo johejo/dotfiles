@@ -12,9 +12,12 @@ repo = 'roxma/nvim-yarp'
 
 [[plugins]]
 repo = 'cocopon/iceberg.vim'
-hook_add = '''
-  colorscheme iceberg
-'''
+
+[[plugins]]
+repo = 'nanotech/jellybeans.vim'
+
+[[plugins]]
+repo = 'sainnhe/gruvbox-material'
 
 [[plugins]]
 repo = 'kana/vim-submode'

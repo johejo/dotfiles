@@ -26,3 +26,6 @@ if has('vim_starting') && dein#check_install()
 endif
 
 source ~/.config/vim/base.vim
+
+set termguicolors
+source ~/.config/vim/colorscheme.vim

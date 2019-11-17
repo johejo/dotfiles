@@ -28,10 +28,9 @@ Plug 'plasticboy/vim-markdown'
 Plug 'previm/previm'
 Plug 'tyru/open-browser.vim'
 Plug 'chr4/nginx.vim'
+Plug 'nanotech/jellybeans.vim'
 
 call plug#end()
-
-colorscheme iceberg
 
 " vim-lsp
 source ~/.config/vim/lsp.vim
@@ -62,9 +61,12 @@ call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options
 " vim-go
 source ~/.config/vim/go.vim
 
-" vim-clap
-nnoremap <silent> <C-p> :Clap history ++externalfilter=fzf<CR>
-nnoremap <silent> .. :Clap files ++externalfilter=fzf<CR>
+" fzf.vim
+nnoremap <silent> <C-p> :FZF<CR>
+nnoremap <silent> .. :call fzf#run({'source': v:oldfiles, 'sink': 'tabe', 'options': '-m -x +s', 'down': '40%'}) <CR>
 
 " submode.vim
 source ~/.config/vim/submode.vim
+
+" colorscheme
+source ~/.config/vim/colorscheme.vim
