@@ -1,4 +1,8 @@
+let g:defx_icons_enable_syntax_highlight = 1
+let g:defx_icons_column_length = 2
+
 nnoremap <silent> <Space>f :Defx -new -toggle -split=vertical -winwidth=40 -direction=topleft<CR>
+
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> c defx#do_action('copy')
@@ -33,7 +37,9 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
   nnoremap <silent><buffer><expr> cd defx#do_action('change_vim_cwd')
 endfunction
+
 let g:defx_ignore_filtype = ['denite', 'defx', 'tagbar']
+
 function! DefxChoosewin(context) abort
   let l:winnrs = filter(range(1, winnr('$')), 'index(g:defx_ignore_filtype, getwinvar(v:val, "&filetype")) == -1' )
   for filename in a:context.targets

@@ -26,6 +26,11 @@ depends = ['vim-choosewin']
 hook_add = '''
   source ~/.config/nvim/defx.vim
 '''
+hook_post_source = '''
+  call defx#custom#option('_', {
+      \ 'show_ignored_files': 1,
+      \ })
+'''
 
 [[plugins]]
 repo = 'chrisbra/vim-zsh'
