@@ -30,7 +30,7 @@ set shiftround
 set shiftwidth=2
 
 " Clipboard
-if (!has('nvim') || $DISPLAY != '') && has('clipboard')
+if has('clipboard')
   if has('unnamedplus')
     set clipboard& clipboard+=unnamedplus
   else
