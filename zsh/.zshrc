@@ -123,8 +123,4 @@ if type exa >/dev/null 2>&1; then
   alias ll="exa -lahF"
 fi
 
-if type fd >/dev/null 2>&1; then
-  alias find="fd"
-fi
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
