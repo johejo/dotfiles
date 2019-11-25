@@ -123,4 +123,8 @@ if type exa >/dev/null 2>&1; then
   alias ll="exa -lahF"
 fi
 
+if type kubectl >/dev/null 2>&1; then
+  alias k="kubectl"
+fi
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

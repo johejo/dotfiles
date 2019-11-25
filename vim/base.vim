@@ -91,5 +91,8 @@ vnoremap <C-k> 5k
 nnoremap <C-h> 0
 nnoremap <C-l> $
 nnoremap <C-s> %
+inoremap <C-c> <Esc>
+vnoremap <C-c> <Esc>
+nnoremap <C-c> <Esc>
 
 filetype plugin indent on

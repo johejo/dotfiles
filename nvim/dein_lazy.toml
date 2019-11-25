@@ -158,10 +158,22 @@ on_ft = ['nginx']
 repo = 't9md/vim-choosewin'
 
 [[plugins]]
-repo = 'mattn/sonictemplate-vim'
-on_ft = ['go']
-
-[[plugins]]
 repo = 'Shougo/neco-vim'
 depends = ['deoplete.nvim']
 on_ft = ['vim']
+
+[[plugins]]
+repo = 'SirVer/ultisnips'
+depends = ['honza/vim-snippets']
+on_ft = ["go", "yaml", "sh"]
+hook_add = '''
+  let g:UltiSnipsExpandTrigger="<tab>"
+'''
+
+[[plugins]]
+repo = 'honza/vim-snippets'
+on_ft = ["go", "yaml", "sh"]
+
+[[plugins]]
+repo = 'andrewstuart/vim-kubernetes'
+on_ft = ["yaml"]
