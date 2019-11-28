@@ -127,4 +127,8 @@ if type kubectl >/dev/null 2>&1; then
   alias k="kubectl"
 fi
 
+if type helm >/dev/null 2>&1; then
+  alias h="helm"
+fi
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

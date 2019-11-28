@@ -1,13 +1,13 @@
-if executable('rg')
-  call denite#custom#var('file/rec', 'command',
-        \ ['rg', '--files', '--glob', '!.git'])
-  call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
-  call denite#custom#var('grep', 'recursive_opts', [])
-  call denite#custom#var('grep', 'final_opts', [])
-  call denite#custom#var('grep', 'separator', ['--'])
-  call denite#custom#var('grep', 'default_opts',
-        \ ['-i', '--vimgrep', '--no-heading'])
-endif
+"if executable('rg')
+"  call denite#custom#var('file/rec', 'command',
+"        \ ['rg', '--files', '--glob', '!.git'])
+"  call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
+"  call denite#custom#var('grep', 'recursive_opts', [])
+"  call denite#custom#var('grep', 'final_opts', [])
+"  call denite#custom#var('grep', 'separator', ['--'])
+"  call denite#custom#var('grep', 'default_opts',
+"        \ ['-i', '--vimgrep', '--no-heading'])
+"endif
 
 call denite#custom#source('file/old', 'converters',
     \ ['converter/abbr_word', 'converter/relative_abbr', 'converter/relative_word'])

@@ -11,7 +11,7 @@ hook_add = '''
   source ~/.config/nvim/denite.vim
 '''
 hook_source = '''
-  source ~/.config/nvim/deoplete_source.vim
+  source ~/.config/nvim/denite_source.vim
 '''
 
 [[plugins]]
@@ -42,7 +42,7 @@ on_ft = 'toml'
 
 [[plugins]]
 repo = 'dense-analysis/ale'
-on_ft = ['python', 'sh', 'terraform', 'json', 'yaml', 'dockerfile', 'make', 'javascript', 'typescript', 'typescriptreact', 'bash', 'zsh']
+on_ft = ['python', 'sh', 'terraform', 'json', 'yaml', 'Dockerfile', 'make', 'javascript', 'typescript', 'typescriptreact', 'bash', 'zsh']
 hook_add = '''
   source ~/.config/nvim/ale.vim
 '''
@@ -116,7 +116,7 @@ depends = ['deoplete.nvim']
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
 depends = ['async.vim', 'deoplete-vim-lsp']
-on_ft = ['go', 'typescript', 'dockerfile', 'sh', 'typescriptreact', 'sql', 'python', 'bash']
+on_ft = ['go', 'typescript', 'Dockerfile', 'sh', 'typescriptreact', 'sql', 'python', 'bash']
 hook_add = '''
   source ~/.config/vim/lsp.vim
 '''
@@ -165,15 +165,19 @@ on_ft = ['vim']
 [[plugins]]
 repo = 'SirVer/ultisnips'
 depends = ['honza/vim-snippets']
-on_ft = ["go", "yaml", "sh"]
+on_ft = ["go", "yaml", "sh", 'Dockerfile', 'yaml.docker-compose']
 hook_add = '''
   let g:UltiSnipsExpandTrigger="<tab>"
 '''
 
 [[plugins]]
 repo = 'honza/vim-snippets'
-on_ft = ["go", "yaml", "sh"]
+on_ft = ["go", "yaml", "sh", 'Dockerfile', 'yaml.docker-compose']
 
 [[plugins]]
 repo = 'andrewstuart/vim-kubernetes'
 on_ft = ["yaml"]
+
+[[plugins]]
+repo = 'ekalinin/Dockerfile.vim'
+on_ft = ['Dockerfile', 'yaml.docker-compose']
