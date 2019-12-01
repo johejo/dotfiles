@@ -131,4 +131,9 @@ if type helm >/dev/null 2>&1; then
   alias h="helm"
 fi
 
+if type python3 >/dev/null 2>&1; then
+  alias python="python3"
+  alias pip="pip3"
+fi
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

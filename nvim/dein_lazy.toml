@@ -165,14 +165,14 @@ on_ft = ['vim']
 [[plugins]]
 repo = 'SirVer/ultisnips'
 depends = ['honza/vim-snippets']
-on_ft = ["go", "yaml", "sh", 'Dockerfile', 'yaml.docker-compose']
+on_ft = ["go", "yaml", "sh", 'Dockerfile', 'yaml.docker-compose', 'python']
 hook_add = '''
   let g:UltiSnipsExpandTrigger="<tab>"
 '''
 
 [[plugins]]
 repo = 'honza/vim-snippets'
-on_ft = ["go", "yaml", "sh", 'Dockerfile', 'yaml.docker-compose']
+on_ft = ["go", "yaml", "sh", 'Dockerfile', 'yaml.docker-compose', 'python']
 
 [[plugins]]
 repo = 'andrewstuart/vim-kubernetes'
