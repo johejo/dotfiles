@@ -17,5 +17,7 @@ export PATH="/usr/local/opt/mysql-client/bin:$PATH"↲
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"↲
 export PATH="/usr/local/sbin:$PATH"
 
+fpath=(/usr/local/share/zsh-completions $fpath)
+
 [ -f /usr/local/opt/fzf/shell/completion.zsh ] && source /usr/local/opt/fzf/shell/completion.zsh
 [ -f /usr/local/opt/fzf/shell/key-bindings.zsh ] && source /usr/local/opt/fzf/shell/key-bindings.zsh

@@ -9,6 +9,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
 \   'typescriptreact': ['eslint'],
+\   'markdown': ['markdownlint'],
 \ }
   let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],

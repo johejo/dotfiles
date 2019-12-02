@@ -18,8 +18,6 @@ case $(uname -s) in
     source "$HOME/.config/zsh/.zshrc.linux";;
 esac
 
-fpath=(/usr/local/share/zsh-completions $fpath)
-
 autoload -Uz promptinit
 promptinit
 
