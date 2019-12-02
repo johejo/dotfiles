@@ -1,8 +1,3 @@
-autoload -Uz compinit
-compinit
-autoload -U bashcompinit
-bashcompinit
-
 setopt histignorealldups sharehistory globdots
 
 bindkey -e
@@ -10,16 +5,6 @@ bindkey -e
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-
-case $(uname -s) in
-  Darwin* )
-    source "$HOME/.config/zsh/.zshrc.darwin";;
-  Linux* )
-    source "$HOME/.config/zsh/.zshrc.linux";;
-esac
-
-autoload -Uz promptinit
-promptinit
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -40,24 +25,35 @@ zstyle ':completion:*:default' menu select=1
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-### Added by Zplugin's installer
-source "$HOME/.zplugin/bin/zplugin.zsh"
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
-### End of Zplugin's installer chunk
+source <(antibody bundle <<EOF
+zsh-users/zsh-completions
+zdharma/history-search-multi-word
+zsh-users/zsh-autosuggestions
+mafredri/zsh-async
+sindresorhus/pure
+zdharma/fast-syntax-highlighting
+agkozak/zsh-z
+EOF
+)
+autoload -Uz compinit 
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+	compinit
+else
+	compinit -C
+fi
 
-zplugin ice wait"!0" blockf
-zplugin light zsh-users/zsh-completions
-zplugin load zdharma/history-search-multi-word
-zplugin ice wait"!0" atload"_zsh_autosuggest_start"
-zplugin light zsh-users/zsh-autosuggestions
-zplugin load agkozak/zsh-z
+autoload -U bashcompinit
+bashcompinit
 
-zplugin ice wait"!0" atinit"zpcompinit; zpcdreplay"
-zplugin light zdharma/fast-syntax-highlighting
+case $(uname -s) in
+  Darwin* )
+    source "$HOME/.config/zsh/.zshrc.darwin";;
+  Linux* )
+    source "$HOME/.config/zsh/.zshrc.linux";;
+esac
 
-zplugin ice pick"async.zsh" src"pure.zsh"
-zplugin light sindresorhus/pure
+autoload -Uz promptinit
+promptinit
 prompt pure
 
 export LANG="ja_JP.UTF-8"
@@ -103,6 +99,7 @@ alias grep='grep --color=auto'
 alias ymd='date +%F'
 alias ymdhms='date +%FT%T'
 alias ymdhmst='date +%FT%T%:z'
+alias es="exec $SHELL"
 
 if type diff-so-fancy >/dev/null 2>&1; then
   alias diff="diff-so-fancy"
