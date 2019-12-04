@@ -73,6 +73,16 @@ if executable('pyls')
       \ })
   augroup END
 endif
+if executable('terraform-lsp')
+  augroup LspTerraform
+    au!
+    autocmd User lsp_setup call lsp#register_server({
+      \ 'name': 'terraform-lsp',
+      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'terraform-lsp']},
+      \ 'whitelist': ['terraform'],
+      \ })
+  augroup END
+endif
 
 let g:lsp_async_completion = 1
 let g:lsp_diagnostics_enabled = 1
