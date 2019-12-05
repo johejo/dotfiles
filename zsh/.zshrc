@@ -35,12 +35,6 @@ zdharma/fast-syntax-highlighting
 agkozak/zsh-z
 EOF
 )
-autoload -Uz compinit 
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
-	compinit
-else
-	compinit -C
-fi
 
 autoload -U bashcompinit
 bashcompinit
@@ -52,6 +46,12 @@ case $(uname -s) in
     source "$HOME/.config/zsh/.zshrc.linux";;
 esac
 
+autoload -Uz compinit 
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+	compinit
+else
+	compinit -C
+fi
 autoload -Uz promptinit
 promptinit
 prompt pure
@@ -124,6 +124,10 @@ fi
 
 if type helm >/dev/null 2>&1; then
   alias h="helm"
+fi
+
+if type terraform >/dev/null 2>&1; then
+  alias t="terraform"
 fi
 
 if type python3 >/dev/null 2>&1; then

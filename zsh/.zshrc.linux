@@ -1,8 +1,9 @@
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-fpath=(/home/linuxbrew/.linuxbrew/share/zsh-completions $fpath)
-fpath=(/home/linuxbrew/.linuxbrew/share/zsh/functions $fpath)
-fpath=(/home/linuxbrew/.linuxbrew/share/zsh/site-functions $fpath)
+fpath=($fpath /home/linuxbrew/.linuxbrew/share/zsh-completions)
+fpath=($fpath /home/linuxbrew/.linuxbrew/share/zsh/functions)
+fpath=($fpath /home/linuxbrew/.linuxbrew/share/zsh/site-functions)
+fpath=($fpath /home/linuxbrew/.linuxbrew/Homebrew/completions/zsh)
 
 source /home/linuxbrew/.linuxbrew/etc/bash_completion.d/az
 
