@@ -91,6 +91,8 @@ vnoremap <C-k> 5k
 nnoremap <C-h> 0
 nnoremap <C-l> $
 nnoremap <C-s> %
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 inoremap <C-c> <Esc>
 vnoremap <C-c> <Esc>
 nnoremap <C-c> <Esc>

@@ -28,6 +28,7 @@ Plug 'previm/previm'
 Plug 'tyru/open-browser.vim'
 Plug 'chr4/nginx.vim'
 Plug 'nanotech/jellybeans.vim'
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 

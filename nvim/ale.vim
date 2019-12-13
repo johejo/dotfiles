@@ -10,7 +10,7 @@ let g:ale_linters = {
 \   'typescript': ['eslint'],
 \   'typescriptreact': ['eslint'],
 \   'markdown': ['markdownlint'],
-\   'terraform': ['tflint'],
+\   'terraform': ['tflint', 'terraform'],
 \ }
   let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
