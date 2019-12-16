@@ -1,5 +1,3 @@
-source ~/.config/vim/base.vim
-
 " vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -29,6 +27,10 @@ Plug 'tyru/open-browser.vim'
 Plug 'chr4/nginx.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'hashivim/vim-terraform'
+Plug 'pangloss/vim-javascript'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -70,3 +72,11 @@ source ~/.config/vim/submode.vim
 
 " colorscheme
 source ~/.config/vim/colorscheme.vim
+
+" ALE
+source ~/.config/vim/ale.vim
+
+let g:vim_jsx_pretty_colorful_config = 1
+let g:vim_jsx_pretty_enable_jsx_highlight = 1
+
+source ~/.config/vim/base.vim

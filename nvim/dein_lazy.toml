@@ -44,7 +44,7 @@ on_ft = 'toml'
 repo = 'dense-analysis/ale'
 on_ft = ['python', 'sh', 'terraform', 'json', 'yaml', 'Dockerfile', 'make', 'javascript', 'typescript', 'typescriptreact', 'bash', 'zsh', 'markdown']
 hook_add = '''
-  source ~/.config/nvim/ale.vim
+  source ~/.config/vim/ale.vim
 '''
 
 [[plugins]]
