@@ -34,8 +34,35 @@ Plug 'dense-analysis/ale'
 
 call plug#end()
 
+set rtp+=~/repos/vim-lsp-settings
+
+nnoremap gd :LspDefinition<CR>
+nnoremap gD :tab split<CR>:LspDefinition<CR>
+nnoremap gv :vsplit<CR>:LspDefinition<CR>
+nnoremap gs :split<CR>:LspDefinition<CR>
+nnoremap H :LspHover<CR>
+nnoremap <F2> :LspRename<CR>
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/vim-lsp.log')
+let g:lsp_settings = {
+    \ 'yaml-language-server': {
+    \    'workspace_config': {
+    \       'yaml': {
+    \          'completion': v:true,
+    \          'hover': v:true,
+    \          'validate': v:true,
+    \          'schemas': {
+    \             'kubernetes': '/*',
+    \           },
+    \          'format': {
+    \             'enable': v:true,
+    \           }
+    \        },
+    \     },
+    \  },
+    \}
 " vim-lsp
-source ~/.config/vim/lsp.vim
+" source ~/.config/vim/lsp.vim
 
 " asynccomplete.vim
 let g:asyncomplete_auto_popup = 1
