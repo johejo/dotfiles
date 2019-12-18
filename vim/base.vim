@@ -97,4 +97,4 @@ inoremap <C-c> <Esc>
 vnoremap <C-c> <Esc>
 nnoremap <C-c> <Esc>
 
-filetype plugin indent on
+"filetype plugin indent on
