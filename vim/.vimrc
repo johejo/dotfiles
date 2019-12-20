@@ -63,8 +63,8 @@ call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options
 source ~/.config/vim/go.vim
 
 " fzf.vim
-nnoremap <silent> <C-p> :FZF<CR>
-nnoremap <silent> .. :call fzf#run({'source': v:oldfiles, 'sink': 'tabe', 'options': '-m -x +s', 'down': '40%'}) <CR>
+nnoremap <silent> .. :FZF<CR>
+nnoremap <silent> <C-p> :call fzf#run({'source': v:oldfiles, 'sink': 'tabe', 'options': '-m -x +s', 'down': '40%'}) <CR>
 
 " submode.vim
 source ~/.config/vim/submode.vim

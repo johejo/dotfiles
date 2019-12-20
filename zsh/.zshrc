@@ -136,3 +136,7 @@ if type python3 >/dev/null 2>&1; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+function base64d() {
+  echo $1 | base64 -d
+}
