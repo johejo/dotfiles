@@ -2,7 +2,7 @@
 
 usage() {
   cat <<USAGE
-Usage: $0 [REPO_DIR] [TARGET_DIR]
+Usage: $0 [TARGET_DIR]
 USAGE
 }
 
@@ -11,7 +11,7 @@ if [ $# -ne 2 ]; then
   exit 1
 fi
 
-REPO_DIR=$(echo "$1" | sed -e 's|/$||g')
+REPO_DIR=$(pwd)
 TARGET_DIR=$(echo "$2" | sed -e 's|/$||g')
 
 echo "REPO_DIR=$REPO_DIR, TARGET_DIR=$TARGET_DIR"

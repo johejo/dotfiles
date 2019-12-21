@@ -1,2 +1,2 @@
 set background=dark
-colorscheme jellybeans
+colorscheme iceberg

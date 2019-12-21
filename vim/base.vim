@@ -2,10 +2,6 @@ if &compatible
   set nocompatible
 endif
 
-augroup MyAutoCmd
-  autocmd!
-augroup END
-
 if has('vim_starting') && &encoding !=# 'utf-8'
   set encoding=utf-8
 endif
@@ -33,7 +29,7 @@ set shiftwidth=2
 if has('clipboard')
   if has('unnamedplus')
     set clipboard& clipboard+=unnamedplus
-  else
+  elseif has('unnamed')
     set clipboard& clipboard+=unnamed
   endif
 endif
@@ -96,5 +92,9 @@ nnoremap <C-y> 3<C-y>
 inoremap <C-c> <Esc>
 vnoremap <C-c> <Esc>
 nnoremap <C-c> <Esc>
+snoremap <C-C> <Esc>
+vnoremap <C-h> 0
+vnoremap <C-l> $
+tnoremap <C-[> <C-\><C-n>
 
-"filetype plugin indent on
+filetype plugin indent on
