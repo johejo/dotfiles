@@ -115,7 +115,6 @@ call plug#end()
 
 source ~/.config/vim/submode.vim
 source ~/.config/vim/colorscheme.vim
-source ~/.config/vim/lsp.vim
 
 if has('nvim')
   source ~/.config/vim/defx.vim
@@ -125,6 +124,7 @@ if has('nvim')
   :luafile ~/.config/nvim/init.lua
 else
   source ~/.config/vim/fzf.vim
+  source ~/.config/vim/lsp.vim
   source ~/.config/vim/asyncomplete.vim
 endif
 
