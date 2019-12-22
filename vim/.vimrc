@@ -117,22 +117,15 @@ source ~/.config/vim/submode.vim
 source ~/.config/vim/colorscheme.vim
 
 if has('nvim')
-  source ~/.config/vim/defx.vim
-  source ~/.config/vim/deol.vim
-  source ~/.config/vim/deoplete.vim
-  source ~/.config/vim/denite.vim
+  source ~/.config/nvim/defx.vim
+  source ~/.config/nvim/deol.vim
+  source ~/.config/nvim/deoplete.vim
+  source ~/.config/nvim/denite.vim
   :luafile ~/.config/nvim/init.lua
-  nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-  nnoremap <silent> gD :tab split<CR><cmd>lua vim.lsp.buf.definition()<CR>
-  nnoremap <silent> gv :vsplit<CR><cmd>lua vim.lsp.buf.definition()<CR>
-  nnoremap <silent> gs :split<CR><cmd>lua vim.lsp.buf.definition()<CR>
-  nnoremap <silent> H  <cmd>lua vim.lsp.buf.hover()<CR>
-  nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
-  nnoremap <silent> K <cmd>lua vim.lsp.buf.signature_help()<CR>
-  nnoremap <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
+  source ~/.config/nvim/nvim_lsp.vim
 else
   source ~/.config/vim/fzf.vim
-  source ~/.config/vim/lsp.vim
+  source ~/.config/vim/vim-lsp.vim
   source ~/.config/vim/asyncomplete.vim
 endif
 
