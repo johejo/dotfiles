@@ -10,3 +10,8 @@ nnoremap gs :split<CR>:LspDefinition<CR>
 nnoremap H :LspHover<CR>
 nnoremap <F2> :LspRename<CR>
 set completeopt-=preview
+
+let g:lsp_settings = {
+  \  'typescript-language-server': {
+  \     'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact', 'typescript', 'typescript.tsx', 'typescriptreact']}
+  \}
