@@ -110,6 +110,7 @@ Plug 'andrewstuart/vim-kubernetes', { 'for': ['yaml'] }
 Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
 Plug 'chrisbra/vim-zsh', { 'for': ['zsh'] }
 Plug 'cespare/vim-toml', { 'for': ['toml'] }
+Plug 'keith/swift.vim', { 'for': ['swift'] }
 
 call plug#end()
 
