@@ -21,6 +21,8 @@ else
   call plug#begin(expand('~/.vim/plugged'))
 endif
 
+let s:use_nvim_lsp = 1 && has('nvim')
+
 " common
 Plug 'kana/vim-submode'
 Plug 'itchyny/lightline.vim'
@@ -31,23 +33,25 @@ Plug 't9md/vim-choosewin'
 Plug 'Shougo/context_filetype.vim'
 
 " LSP
-if has('nvim')
+if s:use_nvim_lsp
   Plug 'neovim/nvim-lsp'
 else
-  " Plug 'prabirshrestha/async.vim'
-  " Plug 'prabirshrestha/vim-lsp'
-  " Plug 'mattn/vim-lsp-settings'
+  Plug 'prabirshrestha/async.vim'
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
 endif
 
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
+" Plug 'hrsh7th/vim-vsnip'
+" Plug 'hrsh7th/vim-vsnip-integ'
 
 " complete
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  " Plug 'Shougo/deoplete-lsp', { 'do': ':UpdateRemotePlugins' }
-  Plug 'lighttiger2505/deoplete-vim-lsp'
+  if s:use_nvim_lsp
+    Plug 'Shougo/deoplete-lsp', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'lighttiger2505/deoplete-vim-lsp'
+  endif
   Plug 'ncm2/float-preview.nvim'
 else
   Plug 'prabirshrestha/asyncomplete.vim'
@@ -117,6 +121,7 @@ Plug 'chrisbra/vim-zsh', { 'for': ['zsh'] }
 Plug 'cespare/vim-toml', { 'for': ['toml'] }
 Plug 'keith/swift.vim', { 'for': ['swift'] }
 Plug 'yasuhiroki/github-actions-yaml.vim', { 'for': ['yaml'] }
+Plug 'reasonml-editor/vim-reason-plus', { 'for': ['reason'] }
 
 call plug#end()
 
@@ -128,15 +133,18 @@ if has('nvim')
   source ~/.config/nvim/deol.vim
   source ~/.config/nvim/deoplete.vim
   source ~/.config/nvim/denite.vim
-  " :luafile ~/.config/nvim/init.lua
-  " source ~/.config/nvim/nvim_lsp.vim
+  if s:use_nvim_lsp
+    :luafile ~/.config/nvim/init.lua
+    source ~/.config/nvim/nvim_lsp.vim
+  endif
 else
   source ~/.config/vim/fzf.vim
-  " source ~/.config/vim/vim-lsp.vim
   source ~/.config/vim/asyncomplete.vim
 endif
 
-source ~/.config/vim/vim-lsp.vim
+if !s:use_nvim_lsp
+  source ~/.config/vim/vim-lsp.vim
+endif
 
 if has('python3')
   source ~/.config/vim/ultisnips.vim
