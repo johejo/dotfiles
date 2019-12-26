@@ -34,15 +34,20 @@ Plug 'Shougo/context_filetype.vim'
 if has('nvim')
   Plug 'neovim/nvim-lsp'
 else
-  Plug 'prabirshrestha/async.vim'
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'mattn/vim-lsp-settings'
+  " Plug 'prabirshrestha/async.vim'
+  " Plug 'prabirshrestha/vim-lsp'
+  " Plug 'mattn/vim-lsp-settings'
 endif
+
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 
 " complete
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'Shougo/deoplete-lsp', { 'do': ':UpdateRemotePlugins' }
+  " Plug 'Shougo/deoplete-lsp', { 'do': ':UpdateRemotePlugins' }
+  Plug 'lighttiger2505/deoplete-vim-lsp'
   Plug 'ncm2/float-preview.nvim'
 else
   Plug 'prabirshrestha/asyncomplete.vim'
@@ -111,6 +116,7 @@ Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
 Plug 'chrisbra/vim-zsh', { 'for': ['zsh'] }
 Plug 'cespare/vim-toml', { 'for': ['toml'] }
 Plug 'keith/swift.vim', { 'for': ['swift'] }
+Plug 'yasuhiroki/github-actions-yaml.vim', { 'for': ['yaml'] }
 
 call plug#end()
 
@@ -122,13 +128,15 @@ if has('nvim')
   source ~/.config/nvim/deol.vim
   source ~/.config/nvim/deoplete.vim
   source ~/.config/nvim/denite.vim
-  :luafile ~/.config/nvim/init.lua
-  source ~/.config/nvim/nvim_lsp.vim
+  " :luafile ~/.config/nvim/init.lua
+  " source ~/.config/nvim/nvim_lsp.vim
 else
   source ~/.config/vim/fzf.vim
-  source ~/.config/vim/vim-lsp.vim
+  " source ~/.config/vim/vim-lsp.vim
   source ~/.config/vim/asyncomplete.vim
 endif
+
+source ~/.config/vim/vim-lsp.vim
 
 if has('python3')
   source ~/.config/vim/ultisnips.vim
