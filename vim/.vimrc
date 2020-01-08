@@ -21,11 +21,12 @@ else
   call plug#begin(expand('~/.vim/plugged'))
 endif
 
-let s:use_nvim_lsp = 1 && has('nvim')
+let s:use_nvim_lsp = 0 && has('nvim')
 
 " common
 Plug 'kana/vim-submode'
 Plug 'itchyny/lightline.vim'
+" Plug 'delphinus/lightline-delphinus'
 Plug 'cocopon/iceberg.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'editorconfig/editorconfig-vim'
@@ -122,6 +123,7 @@ Plug 'cespare/vim-toml', { 'for': ['toml'] }
 Plug 'keith/swift.vim', { 'for': ['swift'] }
 Plug 'yasuhiroki/github-actions-yaml.vim', { 'for': ['yaml'] }
 Plug 'reasonml-editor/vim-reason-plus', { 'for': ['reason'] }
+Plug 'johejo/gomod.vim', { 'for': ['gomod'] }
 
 call plug#end()
 
@@ -156,5 +158,7 @@ augroup MyAutoCmd
   autocmd!
   autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 augroup END
+
+source ~/.config/vim/lightline.vim
 
 source ~/.config/vim/base.vim

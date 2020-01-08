@@ -5,6 +5,7 @@ let g:ale_linters = {
 \   'zsh': ['shellcheck'],
 \   'yaml': ['yamllint'],
 \   'dockerfile': ['hadolint'],
+\   'Dockerfile': ['hadolint'],
 \   'make': ['checkmake'],
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
