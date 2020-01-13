@@ -3,7 +3,11 @@ let g:defx_icons_column_length = 2
 
 nnoremap <silent> <Space>f :Defx -new -toggle -split=vertical -winwidth=40 -direction=topleft<CR>
 
-autocmd FileType defx call s:defx_my_settings()
+augroup MyDefx
+  au!
+  autocmd FileType defx call s:defx_my_settings()
+augroup END
+
 function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> c defx#do_action('copy')
   nnoremap <silent><buffer><expr> m defx#do_action('move')

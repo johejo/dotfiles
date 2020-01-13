@@ -1,164 +1,123 @@
-" vim-plug
-if has('nvim')
-  if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
+" dein
+if &compatible
+  set nocompatible
+endif
+
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_path = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if !isdirectory(s:dein_path)
+  execute '!git clone --depth=1 https://github.com/Shougo/dein.vim' s:dein_path
+endif
+
+let &runtimepath .= ',' . s:dein_path
+if dein#load_state(s:dein_dir)
+  let s:dein_toml = '~/.config/vim/dein.toml'
+  let s:dein_lazy_toml = '~/.config/vim/dein_lazy.toml'
+  call dein#begin(s:dein_dir, [s:dein_toml, s:dein_lazy_toml])
+  call dein#load_toml(s:dein_toml, {'lazy': 0})
+  call dein#load_toml(s:dein_lazy_toml, {'lazy' : 1})
+  call dein#end()
+  call dein#save_state()
+endif
+
+if has('vim_starting') && dein#check_install()
+  call dein#install()
+endif
+
+" python3
+let s:python3_venv = expand('~/.config/vim/venv')
+let g:python3_host_prog = s:python3_venv . '/bin/python3'
+if !isdirectory(s:python3_venv) && executable('python3')
+  execute '!python3 -m venv' s:python3_venv
+  execute '!' . g:python3_host_prog . ' -m pip install -U pip'
+  execute '!' . g:python3_host_prog . ' -m pip install -U pynvim'
+endif
+
+colorscheme iceberg
+
+" search
+set ignorecase
+set smartcase
+set tabstop=2
+set softtabstop=2
+set incsearch
+set nohlsearch
+set wrapscan
+
+" tab
+set smarttab
+set expandtab
+
+" indent
+set shiftwidth=2
+set shiftround
+set autoindent
+set smartindent
+set modeline
+
+" clipboard
+if has('clipboard') && has('unnamedplus')
+  set clipboard&
+  set clipboard^=unnamedplus
+endif
+
+" fold
+set foldenable
+" set foldmethod=indent
+
+" view
+set number
+set cursorline
+set list
+set listchars=tab:»-,trail:␣,eol:↲,extends:»,precedes:«,nbsp:%
+set laststatus=2
+set cmdheight=2
+set title
+set showtabline=2
+
+" line break
+set linebreak
+set showbreak=\
+set breakat=\ \	;:,!?
+set whichwrap+=h,l,<,>,[,],b,s,~
+if exists('+breakindent')
+  set breakindent
+  set wrap
 else
-  if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
+  set nowrap
 endif
 
-let g:python3_host_prog = expand($HOME . '/.venv/neovim/bin/python3')
+" backup
+set nowritebackup
+set nobackup
+set noswapfile
 
-if has('nvim')
-  call plug#begin(expand('~/.config/nvim/plugged'))
-else
-  call plug#begin(expand('~/.vim/plugged'))
-endif
+" others
+set backspace=indent,eol,start
+set matchpairs+=<:>
+set hidden
+set lazyredraw
+set completeopt-=preview
 
-let s:use_nvim_lsp = 0 && has('nvim')
+" key mappings
+nnoremap j gj
+nnoremap k gk
+nnoremap <C-j> 5j
+nnoremap <C-k> 5k
+vnoremap <C-j> 5j
+vnoremap <C-k> 5k
+nnoremap <C-h> 0
+nnoremap <C-l> $
+nnoremap <C-s> %
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+inoremap <C-c> <Esc>
+vnoremap <C-c> <Esc>
+nnoremap <C-c> <Esc>
+snoremap <C-C> <Esc>
+vnoremap <C-h> 0
+vnoremap <C-l> $
+tnoremap <C-[> <C-\><C-n>
 
-" common
-Plug 'kana/vim-submode'
-Plug 'itchyny/lightline.vim'
-" Plug 'delphinus/lightline-delphinus'
-Plug 'cocopon/iceberg.vim'
-Plug 'nanotech/jellybeans.vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 't9md/vim-choosewin'
-Plug 'Shougo/context_filetype.vim'
-
-" LSP
-if s:use_nvim_lsp
-  Plug 'neovim/nvim-lsp'
-else
-  Plug 'prabirshrestha/async.vim'
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'mattn/vim-lsp-settings'
-endif
-
-" Plug 'hrsh7th/vim-vsnip'
-" Plug 'hrsh7th/vim-vsnip-integ'
-
-" complete
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  if s:use_nvim_lsp
-    Plug 'Shougo/deoplete-lsp', { 'do': ':UpdateRemotePlugins' }
-  else
-    Plug 'lighttiger2505/deoplete-vim-lsp'
-  endif
-  Plug 'ncm2/float-preview.nvim'
-else
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  Plug 'prabirshrestha/asyncomplete-file.vim'
-  Plug 'prabirshrestha/asyncomplete-buffer.vim'
-endif
-
-" fuzzy finder
-if has('nvim')
-  Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'raghur/fruzzy', {'do': { -> fruzzy#install()}}
-else
-  Plug 'junegunn/fzf'
-  Plug 'junegunn/fzf.vim'
-endif
-
-" terminal
-Plug 'Shougo/deol.nvim'
-
-" snippets
-if has('python3')
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
-  if !has('nvim')
-    Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-  endif
-endif
-
-" file explorer
-if has('nvim')
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-endif
-
-" code formatter, linter
-Plug 'dense-analysis/ale'
-
-" markdown
-Plug 'godlygeek/tabular', { 'for': ['markdown'] }
-Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
-Plug 'previm/previm', { 'for': ['markdown'] }
-Plug 'tyru/open-browser.vim', { 'for': ['markdown'] }
-
-" javascript, typescript
-Plug 'pangloss/vim-javascript',
-      \ { 'for': ['javascript', 'javascript.jsx', 'javascriptresct', 'typescript', 'typescript.tsx', 'typescriptreact'] }
-Plug 'HerringtonDarkholme/yats.vim',
-      \ { 'for': ['typescript', 'typescript.tsx', 'typescriptreact'] }
-Plug 'maxmellon/vim-jsx-pretty',
-      \ { 'for': ['javascript.jsx', 'javascriptresct', 'typescript.tsx', 'typescriptreact'] }
-
-" Go
-Plug 'mattn/vim-goimports', { 'for': ['go'] }
-
-" Terraform
-Plug 'hashivim/vim-terraform', { 'for': ['terraform'] }
-
-" Dockerfile
-Plug 'ekalinin/Dockerfile.vim', { 'for': ['dockerfile', 'yaml'] }
-
-" Kubernetes
-Plug 'andrewstuart/vim-kubernetes', { 'for': ['yaml'] }
-
-" other
-Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
-Plug 'chrisbra/vim-zsh', { 'for': ['zsh'] }
-Plug 'cespare/vim-toml', { 'for': ['toml'] }
-Plug 'keith/swift.vim', { 'for': ['swift'] }
-Plug 'yasuhiroki/github-actions-yaml.vim', { 'for': ['yaml'] }
-Plug 'reasonml-editor/vim-reason-plus', { 'for': ['reason'] }
-Plug 'johejo/gomod.vim', { 'for': ['gomod'] }
-
-call plug#end()
-
-source ~/.config/vim/submode.vim
-source ~/.config/vim/colorscheme.vim
-
-if has('nvim')
-  source ~/.config/nvim/defx.vim
-  source ~/.config/nvim/deol.vim
-  source ~/.config/nvim/deoplete.vim
-  source ~/.config/nvim/denite.vim
-  if s:use_nvim_lsp
-    :luafile ~/.config/nvim/init.lua
-    source ~/.config/nvim/nvim_lsp.vim
-  endif
-else
-  source ~/.config/vim/fzf.vim
-  source ~/.config/vim/asyncomplete.vim
-endif
-
-if !s:use_nvim_lsp
-  source ~/.config/vim/vim-lsp.vim
-endif
-
-if has('python3')
-  source ~/.config/vim/ultisnips.vim
-endif
-
-source ~/.config/vim/ale.vim
-
-augroup MyAutoCmd
-  autocmd!
-  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-augroup END
-
-source ~/.config/vim/lightline.vim
-
-source ~/.config/vim/base.vim
+filetype plugin indent on
+syntax enable
