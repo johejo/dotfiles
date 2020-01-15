@@ -23,9 +23,6 @@ repo = 'godlygeek/tabular'
 on_ft = 'markdown'
 
 [[plugins]]
-repo = 'tyru/open-browser.vim'
-
-[[plugins]]
 repo = 'hashivim/vim-terraform'
 on_ft = 'terraform'
 

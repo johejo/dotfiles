@@ -13,6 +13,9 @@ on_if = '!has("nvim")'
 repo = 'wsdjeg/dein-ui.vim'
 
 [[plugins]]
+repo = 'tyru/open-browser.vim'
+
+[[plugins]]
 repo = 'sheerun/vim-polyglot'
 
 [[plugins]]
@@ -75,9 +78,6 @@ let g:lsp_settings_servers_dir = expand('~/.cache/vim-lsp/servers')
 
 [[plugins]]
 repo = 'tpope/vim-surround'
-
-[[plugins]]
-repo = 'justinmk/vim-sneak'
 
 [[plugins]]
 repo = 'tpope/vim-characterize'
