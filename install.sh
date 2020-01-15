@@ -6,13 +6,13 @@ Usage: $0 [TARGET_DIR]
 USAGE
 }
 
-if [ $# -ne 2 ]; then
+if [ $# -ne 1 ]; then
   usage
   exit 1
 fi
 
 REPO_DIR=$(pwd)
-TARGET_DIR=$(echo "$2" | sed -e 's|/$||g')
+TARGET_DIR=$(echo "$1" | sed -e 's|/$||g')
 
 echo "REPO_DIR=$REPO_DIR, TARGET_DIR=$TARGET_DIR"
 echo "Are you OK? (y)"

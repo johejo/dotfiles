@@ -135,8 +135,13 @@ if type python3 >/dev/null 2>&1; then
   alias pip="pip3"
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+function ghq-fzf() {
+  repo=$(ghq list | fzf)
+  cd "$(ghq root)/$repo"
+}
 
 function base64d() {
   echo $1 | base64 -d
 }
+
+complete -o nospace -C $(which terraform) terraform
