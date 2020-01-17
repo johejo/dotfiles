@@ -135,13 +135,15 @@ if type python3 >/dev/null 2>&1; then
   alias pip="pip3"
 fi
 
-function ghq-fzf() {
-  repo=$(ghq list | fzf)
-  cd "$(ghq root)/$repo"
+ghq-fzf() {
+  cd "$(ghq root)/$(ghq list | fzf)"
+  clear
 }
 
-function base64d() {
+base64d() {
   echo $1 | base64 -d
 }
 
-complete -o nospace -C $(which terraform) terraform
+if type terraform >/dev/null 2>&1; then
+  complete -o nospace -C $(which terraform) terraform
+fi
