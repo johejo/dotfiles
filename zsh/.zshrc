@@ -25,16 +25,22 @@ zstyle ':completion:*:default' menu select=1
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-source <(antibody bundle <<EOF
-zsh-users/zsh-completions
-zdharma/history-search-multi-word
-zsh-users/zsh-autosuggestions
-mafredri/zsh-async
-sindresorhus/pure
-zdharma/fast-syntax-highlighting
-agkozak/zsh-z
-EOF
-)
+if [[ ! -d ~/.zinit ]];then
+  mkdir -p ~/.zinit
+  git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
+fi
+source ~/.zinit/bin/zinit.zsh
+
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+zinit load zsh-users/zsh-completions
+zinit load zdharma/history-search-multi-word
+zinit load zsh-users/zsh-autosuggestions
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light sindresorhus/pure
+zinit load zdharma/fast-syntax-highlighting
+zinit load agkozak/zsh-z
 
 autoload -U bashcompinit
 bashcompinit
@@ -54,7 +60,6 @@ else
 fi
 autoload -Uz promptinit
 promptinit
-prompt pure
 
 export LANG="ja_JP.UTF-8"
 
