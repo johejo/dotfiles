@@ -2,15 +2,11 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'lambdalisue/gina.vim'
+
+[[plugins]]
 repo = 'haya14busa/dein-command.vim'
 on_cmd = 'Dein'
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-on_if = '!has("nvim")'
-
-[[plugins]]
-repo = 'wsdjeg/dein-ui.vim'
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
@@ -25,88 +21,37 @@ repo = 'kana/vim-textobj-user'
 repo = 'kana/vim-operator-user'
 
 [[plugins]]
-repo = 'kana/vim-textobj-entire'
-
-[[plugins]]
-repo = 'kana/vim-smartinput'
-
-[[plugins]]
 repo = 'kana/vim-submode'
 hook_add = '''
 source ~/.config/vim/submode.vim
 '''
 
 [[plugins]]
-repo = 'Shougo/context_filetype.vim'
-
-[[plugins]]
-repo = 'osyo-manga/vim-precious'
-depends = ['context_filetype.vim']
-
-[[plugins]]
 repo = 'itchyny/lightline.vim'
-hook_add = '''
-source ~/.config/vim/lightline.vim
-'''
-
-[[plugins]]
-repo = 'kana/vim-tabpagecd'
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
-repo = 'roxma/nvim-yarp'
+repo = 'cocopon/iceberg.vim'
 
 [[plugins]]
-repo = 't9md/vim-choosewin'
+repo = 'mattn/vim-lexiv'
 
 [[plugins]]
 repo = 'prabirshrestha/async.vim'
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
+depends = ['async.vim']
 hook_add = '''
 source ~/.config/vim/vim-lsp.vim
 '''
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
-hook_add = '''
-let g:lsp_settings_servers_dir = expand('~/.cache/vim-lsp/servers')
-'''
+depends = ['vim-lsp']
 
 [[plugins]]
-repo = 'tpope/vim-surround'
-
-[[plugins]]
-repo = 'tpope/vim-characterize'
-
-[[plugins]]
-repo = 'haya14busa/vim-edgemotion'
-hook_add = '''
-map <C-n> <Plug>(edgemotion-j)
-map <C-p> <Plug>(edgemotion-k)
-'''
-
-[[plugins]]
-repo = 'haya14busa/vim-operator-flashy'
-depends = ['vim-operator-user']
-hook_add = '''
-map y <Plug>(operator-flashy)
-nmap Y <Plug>(operator-flashy)$
-'''
-
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-
-[[plugins]]
-repo = 'haya14busa/incsearch.vim'
-hook_add = '''
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-'''
-
-[[plugins]]
-repo = 'cocopon/iceberg.vim'
+repo = 'tsuyoshicho/vim-efm-langserver-settings'
+depends = ['vim-lsp']

@@ -20,7 +20,6 @@ set tabstop=2
 set softtabstop=2
 
 " Indent
-set autoindent
 set smartindent
 set shiftround
 set shiftwidth=2
@@ -86,15 +85,18 @@ vnoremap <C-j> 5j
 vnoremap <C-k> 5k
 nnoremap <C-h> 0
 nnoremap <C-l> $
-nnoremap <C-s> %
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
-inoremap <C-c> <Esc>
-vnoremap <C-c> <Esc>
-nnoremap <C-c> <Esc>
-snoremap <C-C> <Esc>
 vnoremap <C-h> 0
 vnoremap <C-l> $
 tnoremap <C-[> <C-\><C-n>
+nnoremap <C-s> %
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+noremap <C-c> <Esc>
+noremap <C-c> <Esc>
+noremap <C-c> <Esc>
+noremap <C-C> <Esc>
 
-filetype plugin indent on
+set fileformat=unix
+set completeopt-=preview
+
+set termguicolors

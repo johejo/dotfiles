@@ -131,7 +131,6 @@ if type terraform >/dev/null 2>&1; then
 fi
 
 if type python3 >/dev/null 2>&1; then
-  alias python="python3"
   alias pip="pip3"
 fi
 
@@ -147,3 +146,5 @@ base64d() {
 if type terraform >/dev/null 2>&1; then
   complete -o nospace -C $(which terraform) terraform
 fi
+
+export TERM=xterm-256color
