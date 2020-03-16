@@ -31,11 +31,12 @@ if dein#load_state(s:dein_dir)
 
   call dein#load_toml(s:dein_toml, {'lazy': 0})
   call dein#load_toml(s:dein_lazy_toml, {'lazy' : 1})
-  " call dein#load_toml(s:dein_vim_lsp_toml, {'lazy' : 0})
   if has("nvim")
     call dein#load_toml(s:dein_nvim_toml, {'lazy' : 1})
     " call dein#load_toml(s:dein_nvim_lsp_toml, {'lazy' : 1})
     call dein#load_toml(s:dein_coc_toml, {'lazy' : 0})
+  else
+    call dein#load_toml(s:dein_vim_lsp_toml, {'lazy': 0})
   endif
   call dein#end()
   call dein#save_state()
