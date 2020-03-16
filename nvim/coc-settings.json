@@ -1,3 +1,12 @@
 {
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-lsp",
+      "filetypes": [
+        "terraform"
+      ],
+      "initializationOptions": {}
+    }
+  },
   "eslint.autoFixOnSave": true
 }
