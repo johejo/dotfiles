@@ -1,0 +1,38 @@
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+on_event = 'InsertEnter'
+on_if = 'has("nvim")'
+hook_add = '''
+let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'lighttiger2505/deoplete-vim-lsp'
+on_if = 'has("nvim")'
+depends = ['deoplete.nvim']
+
+# [[plugins]]
+# repo = 'neovim/nvim-lsp'
+# on_if = 'has("nvim")'
+# on_cmd = ['LspInstall', 'LspInstallInfo']
+# hook_source = '''
+# source ~/.config/nvim/nvim-lsp.vim
+# '''
+# 
+# [[plugins]]
+# repo = 'Shougo/deoplete-lsp'
+# on_if = 'has("nvim")'
+# depends = ['nvim-lsp', 'deoplete.nvim']
+# 
+# [[plugins]]
+# repo = 'h-michael/lsp-ext.nvim'
+# on_if = 'has("nvim")'
+# depends = 'nvim-lsp'
+
+[[plugins]]
+repo = 'ujihisa/neco-look'
+on_source = 'deoplete.nvim'
+
+[[plugins]]
+repo = 'Shougo/neco-syntax'
+on_source = 'deoplete.nvim'

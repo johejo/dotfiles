@@ -1,6 +1,9 @@
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
 on_cmd = 'Fern'
+hook_add = '''
+nnoremap <silent> <Space>f :Fern -drawer -toggle .<CR>
+'''
 
 [[plugins]]
 repo = 'mattn/vim-goimports'

@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "coc-eslint": "latest",
+    "coc-go": "latest",
+    "coc-json": "latest",
+    "coc-tsserver": "latest",
+    "coc-vimlsp": "latest",
+    "coc-yaml": "latest"
+  }
+}
