@@ -84,3 +84,7 @@ on_ft = 'terraform'
 hook_add = '''
 let g:terraform_fmt_on_save=1
 '''
+
+[[plugins]]
+repo = 'previm/previm'
+on_ft = ['markdown']
