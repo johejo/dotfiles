@@ -12,9 +12,9 @@ let g:lsp_log_file = expand('~/vim-lsp.log')
 let g:lsp_diagnostics_float_cursor = 1
 
 let g:lsp_settings = {
-\  'efm-langserver': {'disabled': v:true}
+\  'efm-langserver': {'disabled': v:false},
 \}
 
-let g:lsp_settings_typescript = ['typescript-language-server', 'eslint-language-server']
+let g:lsp_settings_filetype_typescript = ['typescript-language-server', 'eslint-language-server']
 
 let g:efm_langserver_settings#debug = 1

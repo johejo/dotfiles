@@ -1,0 +1,8 @@
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = ['fzf']
+hook_add = '''
+nnoremap <silent> <Space>g :Rg .<CR>
+nnoremap <silent> .. :Files .<CR>
+nnoremap <silent> <C-p> :History .<CR>
+'''

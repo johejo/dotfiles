@@ -6,6 +6,10 @@
         "terraform"
       ],
       "initializationOptions": {}
+    },
+    "efm": {
+      "command": "efm-langserver",
+      "filetypes": ["sh"]
     }
   },
   "eslint.autoFixOnSave": true

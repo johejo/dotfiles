@@ -20,6 +20,7 @@ endif
 let &runtimepath .= ',' . s:dein_path
 if dein#load_state(s:dein_dir)
   let s:dein_toml = '~/.config/vim/dein.toml'
+  let s:dein_vim_toml = '~/.config/vim/dein_vim.toml'
   let s:dein_vim_lsp_toml = '~/.config/vim/dein_vim_lsp.toml'
   let s:dein_lazy_toml = '~/.config/vim/dein_lazy.toml'
 
@@ -27,16 +28,17 @@ if dein#load_state(s:dein_dir)
   let s:dein_coc_toml = '~/.config/nvim/dein_coc.toml'
   let s:dein_nvim_lsp_toml = '~/.config/nvim/dein_nvim_lsp.toml'
 
-  call dein#begin(s:dein_dir, [s:dein_toml, s:dein_vim_lsp_toml, s:dein_lazy_toml, s:dein_nvim_toml, s:dein_nvim_lsp_toml, s:dein_coc_toml])
+  call dein#begin(s:dein_dir, [s:dein_toml, s:dein_vim_toml, s:dein_vim_lsp_toml, s:dein_lazy_toml, s:dein_nvim_toml, s:dein_nvim_lsp_toml, s:dein_coc_toml])
 
   call dein#load_toml(s:dein_toml, {'lazy': 0})
   call dein#load_toml(s:dein_lazy_toml, {'lazy' : 1})
   if has("nvim")
     call dein#load_toml(s:dein_nvim_toml, {'lazy' : 1})
-    " call dein#load_toml(s:dein_nvim_lsp_toml, {'lazy' : 1})
-    call dein#load_toml(s:dein_coc_toml, {'lazy' : 0})
+    call dein#load_toml(s:dein_nvim_lsp_toml, {'lazy' : 1})
+    " call dein#load_toml(s:dein_coc_toml, {'lazy' : 0})
   else
     call dein#load_toml(s:dein_vim_lsp_toml, {'lazy': 0})
+    call dein#load_toml(s:dein_vim_toml, {'lazy': 0})
   endif
   call dein#end()
   call dein#save_state()

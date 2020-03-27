@@ -100,3 +100,4 @@ set fileformat=unix
 set completeopt-=preview
 
 set termguicolors
+set updatetime=400

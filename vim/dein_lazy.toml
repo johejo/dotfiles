@@ -88,12 +88,3 @@ let g:terraform_fmt_on_save=1
 [[plugins]]
 repo = 'previm/previm'
 on_ft = ['markdown']
-
-[[plugins]]
-repo = 'junegunn/fzf'
-on_if = '!has("nvim")'
-hook_add = '''
-nnoremap <silent> <Space>g :Rg .<CR>
-nnoremap <silent> .. :Files .<CR>
-nnoremap <silent> <C-p> :History .<CR>
-'''

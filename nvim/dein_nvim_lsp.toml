@@ -6,28 +6,35 @@ hook_add = '''
 let g:deoplete#enable_at_startup = 1
 '''
 
-[[plugins]]
-repo = 'lighttiger2505/deoplete-vim-lsp'
-on_if = 'has("nvim")'
-depends = ['deoplete.nvim']
+# [[plugins]]
+# repo = 'lighttiger2505/deoplete-vim-lsp'
+# on_if = 'has("nvim")'
+# depends = ['deoplete.nvim']
 
-# [[plugins]]
-# repo = 'neovim/nvim-lsp'
-# on_if = 'has("nvim")'
-# on_cmd = ['LspInstall', 'LspInstallInfo']
-# hook_source = '''
-# source ~/.config/nvim/nvim-lsp.vim
-# '''
-# 
-# [[plugins]]
-# repo = 'Shougo/deoplete-lsp'
-# on_if = 'has("nvim")'
-# depends = ['nvim-lsp', 'deoplete.nvim']
-# 
-# [[plugins]]
-# repo = 'h-michael/lsp-ext.nvim'
-# on_if = 'has("nvim")'
-# depends = 'nvim-lsp'
+[[plugins]]
+repo = 'neovim/nvim-lsp'
+on_if = 'has("nvim")'
+hook_source = '''
+source ~/.config/nvim/nvim-lsp.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/deoplete-lsp'
+on_if = 'has("nvim")'
+depends = ['nvim-lsp', 'deoplete.nvim']
+
+[[plugins]]
+repo = 'h-michael/lsp-ext.nvim'
+on_source = 'nvim-lsp'
+depends = 'nvim-lsp'
+hook_source = '''
+lua << EOF
+  vim.g["lsp_publish_diagnostics_virtualtext"] = false
+  lsp_ext = require'lsp_ext'
+  lsp_ext.set_signature_help_autocmd(100)
+  lsp_ext.set_publish_diagnostics_autocmd(100)
+EOF
+'''
 
 [[plugins]]
 repo = 'ujihisa/neco-look'
