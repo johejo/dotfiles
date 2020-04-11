@@ -13,18 +13,6 @@ augroup MyGoAutoCmd
   autocmd!
   autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 augroup END
-if !executable('goimports')
-  execute '!go get golang.org/x/tools/cmd/goimports'
-endif
-'''
-
-[[plugins]]
-repo = 'mattn/vim-goaddtags'
-on_ft = 'go'
-hook_add = '''
-if !executable('gomodifytags')
-  execute '!go get github.com/fatih/gomodifytags'
-endif
 '''
 
 [[plugins]]
