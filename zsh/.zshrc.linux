@@ -5,7 +5,9 @@ fpath+=(/home/linuxbrew/.linuxbrew/share/zsh/functions)
 fpath+=(/home/linuxbrew/.linuxbrew/share/zsh/site-functions)
 fpath+=(/home/linuxbrew/.linuxbrew/Homebrew/completions/zsh)
 
-source /home/linuxbrew/.linuxbrew/etc/bash_completion.d/az
+if type az >/dev/null 2>&1; then
+  source /home/linuxbrew/.linuxbrew/etc/bash_completion.d/az
+fi
 
 [ -f /home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh ] && source /home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh
 [ -f /home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh ] && source /home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh

@@ -61,7 +61,7 @@ fi
 autoload -Uz promptinit
 promptinit
 
-export LANG="ja_JP.UTF-8"
+export LANG="en_US.UTF-8"
 
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
@@ -105,12 +105,6 @@ alias ymd='date +%F'
 alias ymdhms='date +%FT%T'
 alias ymdhmst='date +%FT%T%:z'
 alias es="exec $SHELL"
-
-if type diff-so-fancy >/dev/null 2>&1; then
-  alias diff="diff-so-fancy"
-fi
-
-git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
 if type bat >/dev/null 2>&1; then
   alias cat="bat"

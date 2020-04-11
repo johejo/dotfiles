@@ -28,6 +28,16 @@ source ~/.config/vim/submode.vim
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename'
+      \ }
+      \ }
+function! LightlineFilename()
+  return expand('%:p')
+endfunction
+'''
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
