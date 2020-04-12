@@ -131,6 +131,7 @@ fi
 
 if type python3 >/dev/null 2>&1; then
   alias pip="pip3"
+  alias python="python3"
 fi
 
 ghq-fzf() {
