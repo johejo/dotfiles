@@ -1,49 +1,58 @@
-setopt histignorealldups sharehistory globdots
-
-bindkey -e
-
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
-
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-zstyle ':completion:*:default' menu select=1
-
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
-if [[ ! -d ~/.zinit ]];then
-  mkdir -p ~/.zinit
-  git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
-source ~/.zinit/bin/zinit.zsh
 
+source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-zinit load zsh-users/zsh-completions
+### End of Zinit's installer chunk
+
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma/fast-syntax-highlighting
+
 zinit load zdharma/history-search-multi-word
-zinit load zsh-users/zsh-autosuggestions
-zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+
+zinit ice pick"async.zsh" src"pure.zsh"
 zinit light sindresorhus/pure
-zinit load zdharma/fast-syntax-highlighting
-zinit load agkozak/zsh-z
+
+zinit for \
+    light-mode  zsh-users/zsh-autosuggestions \
+    light-mode  zdharma/fast-syntax-highlighting \
+                zdharma/history-search-multi-word \
+    light-mode pick"async.zsh" src"pure.zsh" \
+                sindresorhus/pure
+
+zinit load zsh-users/zsh-completions
+
+zinit ice lucid wait"0" depth"1" blockf
+zinit light yuki-ycino/fzf-preview.zsh
+bindkey '^i' fzf-or-normal-completion
+
+autoload -U compinit && compinit
 
 autoload -U bashcompinit
 bashcompinit
+
+setopt histignorealldups sharehistory globdots
+bindkey -e
+
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' matcher-list  'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/.zsh/cache"
 
 case $(uname -s) in
   Darwin* )
@@ -51,15 +60,6 @@ case $(uname -s) in
   Linux* )
     source "$HOME/.config/zsh/.zshrc.linux";;
 esac
-
-autoload -Uz compinit 
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
-	compinit
-else
-	compinit -C
-fi
-autoload -Uz promptinit
-promptinit
 
 export LANG="en_US.UTF-8"
 
@@ -71,9 +71,7 @@ export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 
 if type go >/dev/null 2>&1; then
-  export GOPATH=$HOME/go
   export PATH=$GOPATH/bin:$PATH
-  export GO111MODULE=on
 fi
 
 if type pipenv >/dev/null 2>&1; then
@@ -117,18 +115,6 @@ if type exa >/dev/null 2>&1; then
   alias ll="exa -lahF"
 fi
 
-if type kubectl >/dev/null 2>&1; then
-  alias k="kubectl"
-fi
-
-if type helm >/dev/null 2>&1; then
-  alias h="helm"
-fi
-
-if type terraform >/dev/null 2>&1; then
-  alias t="terraform"
-fi
-
 if type python3 >/dev/null 2>&1; then
   alias pip="pip3"
   alias python="python3"
@@ -137,10 +123,6 @@ fi
 ghq-fzf() {
   cd "$(ghq root)/$(ghq list | fzf)"
   clear
-}
-
-base64d() {
-  echo $1 | base64 -d
 }
 
 if type terraform >/dev/null 2>&1; then
