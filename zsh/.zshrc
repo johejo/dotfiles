@@ -17,6 +17,7 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
 
 zinit load zdharma/history-search-multi-word
+zinit load agkozak/zsh-z
 
 zinit ice pick"async.zsh" src"pure.zsh"
 zinit light sindresorhus/pure
@@ -39,16 +40,22 @@ autoload -U compinit && compinit
 autoload -U bashcompinit
 bashcompinit
 
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
 setopt histignorealldups sharehistory globdots
 bindkey -e
 
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
+zstyle ':completion:*:default' menu select=1
 zstyle ':completion:*' completer _expand _complete _correct _approximate
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' special-dirs true
-zstyle ':completion:*' matcher-list  'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' use-cache on
@@ -71,7 +78,7 @@ export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 
 if type go >/dev/null 2>&1; then
-  export PATH=$GOPATH/bin:$PATH
+  export PATH=$(go env GOPATH)/bin:$PATH
 fi
 
 if type pipenv >/dev/null 2>&1; then
