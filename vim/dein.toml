@@ -48,7 +48,7 @@ repo = 'cocopon/iceberg.vim'
 [[plugins]]
 repo = 'junegunn/fzf'
 merged = 0
-build = './install'
+build = './install --all'
 
 [[plugins]]
 repo = 'mattn/vim-lexiv'

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 usage() {
-  cat <<USAGE
+  cat << USAGE
 Usage: $0 [TARGET_DIR]
 USAGE
 }

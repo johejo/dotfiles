@@ -18,3 +18,10 @@ let g:lsp_settings = {
 let g:lsp_settings_filetype_typescript = ['typescript-language-server', 'eslint-language-server']
 
 " let g:efm_langserver_settings#debug = 1
+
+
+au User lsp_setup call lsp#register_server({
+    \ 'name': 'lsp-tsserver',
+    \ 'cmd': {server_info->['lsp-tsserver', '--stdio']},
+    \ 'allowlist': ['typescript', 'typescriptreact'],
+    \ })

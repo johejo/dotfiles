@@ -16,10 +16,9 @@ func main() {
 	}()
 
 	log.Printf("pid: %d", os.Getpid())
-	i := 0
+	lsp := 0
 	for {
 		time.Sleep(3 * time.Second)
-		log.Printf("loop: %d", i)
-		i++
+		lsp++
 	}
 }

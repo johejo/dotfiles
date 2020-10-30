@@ -35,8 +35,6 @@ zinit ice lucid wait"0" depth"1" blockf
 zinit light yuki-ycino/fzf-preview.zsh
 bindkey '^i' fzf-or-normal-completion
 
-autoload -U compinit && compinit
-
 autoload -U bashcompinit
 bashcompinit
 
@@ -67,6 +65,8 @@ case $(uname -s) in
   Linux* )
     source "$HOME/.config/zsh/.zshrc.linux";;
 esac
+
+autoload -U compinit && compinit
 
 export LANG="en_US.UTF-8"
 
