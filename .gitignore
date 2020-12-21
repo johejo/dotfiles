@@ -1,14 +1,2 @@
-/.vscode/
-/fish/*
-!/fish/functions/
-/fish/functions/*
-!/fish/functions/fzflocate.fish
-!/fish/functions/gi.fish
-!/fish/config.fish
-!/fish/fishfile
-vim/.vim/autoload/plug.vim
-vim/.vim/.netrwhist
-nvim/.netrwhist
-plugged
-venv
-vim/.netrwhist
+.vscode
+.DS_Store

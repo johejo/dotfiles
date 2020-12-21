@@ -1,8 +1,0 @@
-[[plugins]]
-repo = 'yuki-ycino/fzf-preview.vim'
-on_if = 'has("nvim")'
-hook_add = '''
-nnoremap <silent> <Space>g :FzfPreviewProjectGrep .<CR>
-nnoremap <silent> .. :FzfPreviewProjectFiles .<CR>
-nnoremap <silent> <C-p> :FzfPreviewProjectOldFiles .<CR>
-'''

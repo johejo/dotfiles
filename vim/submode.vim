@@ -1,8 +1,0 @@
-call submode#enter_with('winsize', 'n', '', '<C-w><C-l>', '<C-w>>')
-call submode#enter_with('winsize', 'n', '', '<C-w><C-h>', '<C-w><')
-call submode#enter_with('winsize', 'n', '', '<C-w><C-k>', '<C-w>+')
-call submode#enter_with('winsize', 'n', '', '<C-w><C-j>', '<C-w>-')
-call submode#map('winsize', 'n', '', '<C-l>', '<C-w>>')
-call submode#map('winsize', 'n', '', '<C-h>', '<C-w><')
-call submode#map('winsize', 'n', '', '<C-k>', '<C-w>+')
-call submode#map('winsize', 'n', '', '<C-j>', '<C-w>-')

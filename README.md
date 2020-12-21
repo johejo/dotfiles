@@ -1,2 +1,0 @@
-# dotfiles
-johejo's dotfile
