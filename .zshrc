@@ -1,3 +1,15 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/johejo/.zshrc'
+
+# End of lines added by compinstall
+
+
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
@@ -17,6 +29,7 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zdharma/fast-syntax-highlighting
 zinit load zdharma/history-search-multi-word
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -25,8 +38,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source ~/.profile
 PREFIX="$(brew --prefix)"
-source "$PREFIX/opt/powerlevel10k/powerlevel10k.zsh-theme"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -50,10 +63,11 @@ alias es="exec $SHELL"
 
 UNAME=$(uname -s)
 
+export PATH="$PATH:/snap/bin"
+export PATH="$PATH:$HOME/go/bin"
+eval $($PREFIX/bin/brew shellenv)
+
 export TERM=xterm-256color
-if [[ $UNAME = "Darwin" ]]; then
-  export PATH="$PREFIX/opt/coreutils/libexec/gnubin:$PATH"
-fi
 export FZF_DEFAULT_OPTS="--layout=reverse"
 export FZF_CTRL_T_OPTS='--preview "bat  --color=always --style=header,grid --line-range :100 {}"'
 
@@ -76,5 +90,3 @@ function gcd() {
   cd "$ghq_root/$target"
   clear
 }
-
-export PATH="$PATH:$HOME/go/bin"

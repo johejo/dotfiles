@@ -1,16 +1,9 @@
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo '~/.local/share/nvim/site/autoload/plug.vim' --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-endif
-
 call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'srcery-colors/srcery-vim'
 Plug 'itchyny/lightline.vim'
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'antoinemadec/coc-fzf'
-let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-go', 'coc-vimlsp', 'coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-diagnostic', 'coc-sh', 'coc-html']
+let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-go', 'coc-vimlsp', 'coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-diagnostic', 'coc-sh', 'coc-html', 'coc-snippets']
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -18,12 +11,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'sheerun/vim-polyglot'
 
-Plug 'cohama/lexima.vim'
 Plug 'kana/vim-submode'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-hijack.vim'
+
+Plug 'windwp/nvim-autopairs'
 
 call plug#end()
 
@@ -61,11 +55,13 @@ set clipboard=unnamedplus
 
 lua <<EOF
 require 'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+  ensure_installed = {'go'},
   highlight = {
     enable = true,
   },
 }
+
+require('nvim-autopairs').setup()
 EOF
 
 call submode#enter_with('winsize', 'n', '', '<C-w><C-l>', '<C-w>>')
@@ -131,3 +127,16 @@ cnoremap <C-b> <Left>
 nnoremap .. <cmd>Files<CR>
 nnoremap <Space>g <cmd>Rg .<CR>
 nnoremap <C-p> <cmd>History<CR>
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
