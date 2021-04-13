@@ -19,6 +19,8 @@ Plug 'lambdalisue/fern-hijack.vim'
 
 Plug 'windwp/nvim-autopairs'
 
+Plug 'nicwest/vim-camelsnek'
+
 call plug#end()
 
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))

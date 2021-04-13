@@ -38,7 +38,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source ~/.profile
+if [[ -f ~/.profile ]]; then
+  source ~/.profile
+fi
 PREFIX="$(brew --prefix)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -64,6 +66,7 @@ alias es="exec $SHELL"
 UNAME=$(uname -s)
 
 export PATH="$PATH:/snap/bin"
+export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/go/bin"
 eval $($PREFIX/bin/brew shellenv)
 
@@ -73,6 +76,11 @@ export FZF_CTRL_T_OPTS='--preview "bat  --color=always --style=header,grid --lin
 
 if type nvim >/dev/null 2>&1; then
   export EDITOR=nvim
+fi
+
+if [[ ${UNAME} == "Darwin" ]]; then
+  export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+  export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 fi
 
 eval "$(dircolors)"
