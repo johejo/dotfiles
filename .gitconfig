@@ -1,0 +1,12 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Mitsuo Heijo
+	email = mitsuo.heijo@gmail.com
+[init]
+	defaultBranch = main
+[feature]
+	manyFiles = true
