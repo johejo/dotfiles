@@ -152,6 +152,9 @@ null_ls.setup({
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.clang_format,
+    null_ls.builtins.diagnostics.actionlint,
+    null_ls.builtins.diagnostics.checkmake,
+    null_ls.builtins.diagnostics.cppcheck,
   },
   on_attach = function()
     vim.keymap.set("n", "<C-f>", vim.lsp.buf.format, { buffer = true })
@@ -216,6 +219,7 @@ local language_servers = {
     disable_format = true,
   },
   clangd = { disable_format = true },
+  terraformls = {},
 }
 for server, opts in pairs(language_servers) do
   require("lspconfig")[server].setup({
@@ -243,10 +247,7 @@ for server, opts in pairs(language_servers) do
   })
 end
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  virtual_text = false,
-  update_in_insert = true,
-})
+vim.diagnostic.config({ virtual_text = false, update_in_insert = true })
 
 require("indent_blankline").setup({
   show_end_of_line = true,

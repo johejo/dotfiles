@@ -9,20 +9,31 @@ alias cat="bat"
 
 export FZF_DEFAULT_OPTS="--layout=reverse"
 export EDITOR="nvim"
+export GPG_TTY=$(tty)
 
 function gcd {
   cd "$(ghq root)/$(ghq list | fzf)/"
 }
 
-eval "$($HOME/go/bin/safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin)"
-eval "$($HOME/go/bin/safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin)"
-eval "$($HOME/go/bin/safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin)"
-eval "$($HOME/go/bin/safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/gnu-time/libexec/gnubin)"
-eval "$($HOME/go/bin/safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/grep/libexec/gnubin)"
-eval "$($HOME/go/bin/safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/make/libexec/gnubin)"
-eval "$($HOME/go/bin/safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/node@16/bin)"
-eval "$($HOME/go/bin/safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/openjdk/bin)"
 eval "$($HOME/go/bin/safepathexport -key PATH -value $HOME/go/bin -push)"
+
+eval "$(safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin)"
+eval "$(safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin)"
+eval "$(safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin)"
+eval "$(safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/gnu-time/libexec/gnubin)"
+eval "$(safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/grep/libexec/gnubin)"
+eval "$(safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/make/libexec/gnubin)"
+eval "$(safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/node@16/bin)"
+eval "$(safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/openjdk/bin)"
+
+eval "$(safepathexport -key MANPATH -value $HOMEBREW_PREFIX/opt/coreutils/libexec/man)"
+eval "$(safepathexport -key MANPATH -value $HOMEBREW_PREFIX/opt/gnu-tar/libexec/man)"
+eval "$(safepathexport -key MANPATH -value $HOMEBREW_PREFIX/opt/gnu-sed/libexec/man)"
+eval "$(safepathexport -key MANPATH -value $HOMEBREW_PREFIX/opt/gnu-time/libexec/man)"
+eval "$(safepathexport -key MANPATH -value $HOMEBREW_PREFIX/opt/grep/libexec/man)"
+eval "$(safepathexport -key MANPATH -value $HOMEBREW_PREFIX/opt/make/libexec/man)"
+eval "$(safepathexport -key MANPATH -value $HOMEBREW_PREFIX/opt/node@16/share/man)"
+eval "$(safepathexport -key MANPATH -value $HOMEBREW_PREFIX/opt/openjdk/share/man)"
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
