@@ -136,9 +136,6 @@ cmp.setup.cmdline(":", {
   }),
 })
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 local schemastore = require("schemastore")
 
 local null_ls = require("null-ls")
@@ -218,10 +215,23 @@ local language_servers = {
     },
     disable_format = true,
   },
-  clangd = { disable_format = true },
+  clangd = {
+    disable_format = true,
+    capabilities_fn = function(capabilities)
+      capabilities.offsetEncoding = { "utf-8" }
+      return capabilities
+    end,
+  },
   terraformls = {},
+  bashls = {},
+  dockerls = {},
 }
+
+local cmp_capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+cmp_capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 for server, opts in pairs(language_servers) do
+  local capabilities = opts.capabilities_fn and opts.capabilities_fn(cmp_capabilities) or cmp_capabilities
   require("lspconfig")[server].setup({
     capabilities = capabilities,
     settings = opts.settings,
@@ -233,7 +243,6 @@ for server, opts in pairs(language_servers) do
       vim.keymap.set("n", "gi", vim.lsp.buf.implementation, map_opts)
       vim.keymap.set("n", "<C-q>", vim.lsp.buf.references, map_opts)
       vim.keymap.set("n", "<Space>rn", vim.lsp.buf.rename, map_opts)
-      vim.keymap.set("n", "<C-d>", vim.diagnostic.open_float, map_opts)
       if opts.disable_format then
         client.server_capabilities.document_formatting = false
       else
@@ -247,6 +256,7 @@ for server, opts in pairs(language_servers) do
   })
 end
 
+vim.keymap.set("n", "<C-d>", vim.diagnostic.open_float)
 vim.diagnostic.config({ virtual_text = false, update_in_insert = true })
 
 require("indent_blankline").setup({

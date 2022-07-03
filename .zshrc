@@ -17,6 +17,8 @@ function gcd {
 
 eval "$($HOME/go/bin/safepathexport -key PATH -value $HOME/go/bin -push)"
 
+eval "$(safepathexport -key PATH -value $HOME/.local/nvim/bin -push)"
+
 eval "$(safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin)"
 eval "$(safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin)"
 eval "$(safepathexport -key PATH -value $HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin)"
