@@ -6,6 +6,7 @@ alias es="exec $SHELL -l"
 alias ls="exa"
 alias ll="exa -al"
 alias cat="bat"
+alias k="kubectl"
 
 export FZF_DEFAULT_OPTS="--layout=reverse"
 export EDITOR="nvim"

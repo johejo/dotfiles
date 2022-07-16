@@ -1,6 +1,7 @@
 vim.cmd("runtime */jetpack.vim")
 
 require("jetpack").setup({
+  { "tani/vim-jetpack", opt = 1 },
   "neovim/nvim-lspconfig",
   "b0o/schemastore.nvim",
   "nvim-lua/plenary.nvim",
@@ -85,6 +86,7 @@ require("nvim-treesitter.configs").setup({
     "jsdoc",
     "yaml",
     "python",
+    "zig",
   },
   highlight = {
     enable = true,
@@ -225,6 +227,8 @@ local language_servers = {
   terraformls = {},
   bashls = {},
   dockerls = {},
+  marksman = {},
+  zls = {},
 }
 
 local cmp_capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -261,6 +265,8 @@ vim.diagnostic.config({ virtual_text = false, update_in_insert = true })
 
 require("indent_blankline").setup({
   show_end_of_line = true,
+  show_current_context = true,
+  show_current_context_start = true,
 })
 
 local fzf_lua = require("fzf-lua")
@@ -292,6 +298,8 @@ vim.cmd([[
     autocmd FileType fern call glyph_palette#apply()
     autocmd FileType nerdtree,startify call glyph_palette#apply()
   augroup END
+
+  highlight Visual guibg=#839496 gui=None guifg=#002b36
 ]])
 
 vim.keymap.set({ "n", "x" }, "p", require("pasta.mappings").p)
