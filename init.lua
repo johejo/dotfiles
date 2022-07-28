@@ -1,4 +1,4 @@
-vim.cmd("runtime */jetpack.vim")
+vim.cmd("packadd vim-jetpack")
 
 require("jetpack").setup({
   { "tani/vim-jetpack", opt = 1 },
