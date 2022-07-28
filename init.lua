@@ -266,7 +266,6 @@ vim.diagnostic.config({ virtual_text = false, update_in_insert = true })
 require("indent_blankline").setup({
   show_end_of_line = true,
   show_current_context = true,
-  show_current_context_start = true,
 })
 
 local fzf_lua = require("fzf-lua")
