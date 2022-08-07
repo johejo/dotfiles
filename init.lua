@@ -77,6 +77,7 @@ require("nvim-treesitter.configs").setup({
     "json",
     "make",
     "php",
+    "proto",
     "regex",
     "toml",
     "tsx",
@@ -161,11 +162,6 @@ null_ls.setup({
 
 local language_servers = {
   gopls = {
-    settings = {
-      gopls = {
-        gofumpt = true,
-      },
-    },
     formatting_fn = function()
       vim.lsp.buf.format({ async = false })
       local params = vim.lsp.util.make_range_params()
@@ -248,6 +244,7 @@ for server, opts in pairs(language_servers) do
       vim.keymap.set("n", "<Space>rn", vim.lsp.buf.rename, map_opts)
       if opts.disable_format then
         client.server_capabilities.document_formatting = false
+        client.server_capabilities.documentFormattingProvider = false
       else
         if opts.formatting_fn then
           vim.keymap.set("n", "<C-f>", opts.formatting_fn, map_opts)
