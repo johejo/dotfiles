@@ -215,7 +215,7 @@ local language_servers = {
   clangd = {
     disable_format = true,
     capabilities_fn = function(capabilities)
-      capabilities.offsetEncoding = { "utf-8" }
+      capabilities.offsetEncoding = { "utf-16" }
       return capabilities
     end,
   },
@@ -297,6 +297,9 @@ vim.cmd([[
   highlight Visual guibg=#839496 gui=None guifg=#002b36
 ]])
 
+require("pasta").setup({
+  converters = {},
+})
 vim.keymap.set({ "n", "x" }, "p", require("pasta.mappings").p)
 vim.keymap.set({ "n", "x" }, "P", require("pasta.mappings").P)
 
