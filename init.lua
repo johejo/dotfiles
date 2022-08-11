@@ -25,7 +25,6 @@ require("jetpack").setup({
   "meetcw/cmp-browser-source",
   "hrsh7th/nvim-cmp",
   "nvim-treesitter/nvim-treesitter",
-  "cohama/lexima.vim",
   "kana/vim-submode",
   "vijaymarupudi/nvim-fzf",
   "ibhagwan/fzf-lua",
@@ -41,6 +40,9 @@ require("jetpack").setup({
   { "iamcco/markdown-preview.nvim", ft = "markdown", run = "cd app && yarn install" },
   { "kevinhwang91/nvim-bqf", ft = "qf" },
   "junegunn/fzf",
+  "windwp/nvim-autopairs",
+  "yioneko/nvim-yati",
+  "monaqa/dial.nvim",
 })
 
 vim.opt.swapfile = false
@@ -87,11 +89,15 @@ require("nvim-treesitter.configs").setup({
     "yaml",
     "python",
     "zig",
+    "rust",
   },
   highlight = {
     enable = true,
   },
   indent = {
+    enable = false,
+  },
+  yati = {
     enable = true,
   },
 })
@@ -224,6 +230,7 @@ local language_servers = {
   dockerls = {},
   marksman = {},
   zls = {},
+  rust_analyzer = {},
 }
 
 local cmp_capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -304,3 +311,30 @@ vim.keymap.set({ "n", "x" }, "p", require("pasta.mappings").p)
 vim.keymap.set({ "n", "x" }, "P", require("pasta.mappings").P)
 
 vim.keymap.set("n", "<Space>f", "<cmd>Fern . -keep -toggle -drawer<CR>")
+
+require("nvim-autopairs").setup()
+
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
+local dial_augend = require("dial.augend")
+local dial_config = require("dial.config")
+dial_config.augends:register_group({
+  default = {
+    dial_augend.integer.alias.decimal, -- nonnegative decimal number (0, 1, 2, 3, ...)
+    dial_augend.integer.alias.hex, -- nonnegative hex number  (0x01, 0x1a1f, etc.)
+    dial_augend.date.alias["%Y/%m/%d"], -- date (2022/02/19, etc.)
+    dial_augend.date.alias["%Y-%m-%d"], -- date (2022-02-19, etc.)
+    dial_augend.date.alias["%H:%M:%S"], -- date (12:45:06, etc.)
+    dial_augend.date.alias["%H:%M"], -- date (12:45, etc.)
+    dial_augend.constant.alias.bool,
+    dial_augend.constant.alias.alpha,
+    dial_augend.constant.alias.Alpha,
+    dial_augend.semver.alias.semver,
+  },
+})
+local dial_map = require("dial.map")
+vim.keymap.set("n", "<C-a>", dial_map.inc_normal())
+vim.keymap.set("v", "<C-a>", dial_map.inc_visual())
+vim.keymap.set("n", "<C-x>", dial_map.dec_normal())
+vim.keymap.set("v", "<C-x>", dial_map.dec_visual())
