@@ -11,6 +11,7 @@ alias k="kubectl"
 export FZF_DEFAULT_OPTS="--layout=reverse"
 export EDITOR="nvim"
 export GPG_TTY=$(tty)
+export MANPAGER="nvim -c ASMANPAGER -"
 
 function gcd {
   cd "$(ghq root)/$(ghq list | fzf)/"
@@ -78,3 +79,5 @@ zstyle ':completion:*:default' menu select=1
 
 autoload -Uz compinit && compinit
 autoload -U bashcompinit && bashcompinit
+
+source "$HOMEBREW_PREFIX/share/zsh/site-functions/_google-cloud-sdk"

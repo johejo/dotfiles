@@ -43,6 +43,8 @@ require("jetpack").setup({
   "windwp/nvim-autopairs",
   "yioneko/nvim-yati",
   "monaqa/dial.nvim",
+  "yuki-yano/fern-preview.vim",
+  "lambdalisue/vim-manpager",
 })
 
 vim.opt.swapfile = false
@@ -79,7 +81,11 @@ require("nvim-treesitter.configs").setup({
     "json",
     "make",
     "php",
+    "toml",
+    "cmake",
+    "jsdoc",
     "proto",
+    "markdown",
     "regex",
     "toml",
     "tsx",
@@ -90,6 +96,8 @@ require("nvim-treesitter.configs").setup({
     "python",
     "zig",
     "rust",
+    "sql",
+    "make",
   },
   highlight = {
     enable = true,
@@ -285,23 +293,35 @@ vim.keymap.set({ "n", "v" }, "<C-l>", "$")
 vim.keymap.set({ "n", "v" }, "j", "gj")
 vim.keymap.set({ "n", "v" }, "k", "gk")
 vim.cmd([[
-  call submode#enter_with('winsize', 'n', '', '<C-w><C-l>', '<C-w>>')
-  call submode#enter_with('winsize', 'n', '', '<C-w><C-h>', '<C-w><')
-  call submode#enter_with('winsize', 'n', '', '<C-w><C-k>', '<C-w>+')
-  call submode#enter_with('winsize', 'n', '', '<C-w><C-j>', '<C-w>-')
-  call submode#map('winsize', 'n', '', '<C-l>', '<C-w>>')
-  call submode#map('winsize', 'n', '', '<C-h>', '<C-w><')
-  call submode#map('winsize', 'n', '', '<C-k>', '<C-w>+')
-  call submode#map('winsize', 'n', '', '<C-j>', '<C-w>-')
-  let g:fern#renderer = "nerdfont"
+	call submode#enter_with('winsize', 'n', '', '<C-w><C-l>', '<C-w>>')
+	call submode#enter_with('winsize', 'n', '', '<C-w><C-h>', '<C-w><')
+	call submode#enter_with('winsize', 'n', '', '<C-w><C-k>', '<C-w>+')
+	call submode#enter_with('winsize', 'n', '', '<C-w><C-j>', '<C-w>-')
+	call submode#map('winsize', 'n', '', '<C-l>', '<C-w>>')
+	call submode#map('winsize', 'n', '', '<C-h>', '<C-w><')
+	call submode#map('winsize', 'n', '', '<C-k>', '<C-w>+')
+	call submode#map('winsize', 'n', '', '<C-j>', '<C-w>-')
+	let g:fern#renderer = "nerdfont"
 
-  augroup my-glyph-palette
-    autocmd! *
-    autocmd FileType fern call glyph_palette#apply()
-    autocmd FileType nerdtree,startify call glyph_palette#apply()
-  augroup END
+	augroup my-glyph-palette
+	  autocmd! *
+	  autocmd FileType fern call glyph_palette#apply()
+	  autocmd FileType nerdtree,startify call glyph_palette#apply()
+	augroup END
 
-  highlight Visual guibg=#839496 gui=None guifg=#002b36
+	highlight Visual guibg=#839496 gui=None guifg=#002b36
+
+	function! s:fern_settings() abort
+	  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+	  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+	  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+	  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+	endfunction
+
+	augroup fern-settings
+	  autocmd!
+	  autocmd FileType fern call s:fern_settings()
+	augroup END
 ]])
 
 require("pasta").setup({
