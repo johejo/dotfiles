@@ -62,6 +62,7 @@ vim.opt.hlsearch = false
 vim.opt.ignorecase = true
 vim.opt.list = true
 vim.opt.listchars = "tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%"
+vim.opt.wrap = false
 vim.cmd("colorscheme srcery")
 
 require("nvim-treesitter.configs").setup({
@@ -158,8 +159,7 @@ local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.prettier.with({
-      prefer_local = "node_modules/.bin",
-      autostart = true,
+      only_local = "node_modules/.bin",
     }),
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.formatting.stylua,
@@ -168,11 +168,16 @@ null_ls.setup({
     null_ls.builtins.diagnostics.actionlint,
     null_ls.builtins.diagnostics.checkmake,
     null_ls.builtins.diagnostics.cppcheck,
+    -- null_ls.builtins.formatting.deno_fmt,
   },
   on_attach = function()
-    vim.keymap.set("n", "<C-f>", vim.lsp.buf.format, { buffer = true })
+    vim.keymap.set("n", "<C-f>", function()
+      vim.lsp.buf.format({ timeout_ms = 10000 })
+    end, { buffer = true })
   end,
 })
+
+local lspconfig = require("lspconfig")
 
 local language_servers = {
   gopls = {
@@ -194,6 +199,7 @@ local language_servers = {
   },
   tsserver = {
     disable_format = true,
+    root_dir = lspconfig.util.root_pattern("package.json"),
   },
   eslint = {},
   jsonls = {
@@ -239,14 +245,18 @@ local language_servers = {
   marksman = {},
   zls = {},
   rust_analyzer = {},
+  denols = {
+    root_dir = lspconfig.util.root_pattern("deno.json"),
+  },
 }
 
-local cmp_capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 cmp_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 for server, opts in pairs(language_servers) do
   local capabilities = opts.capabilities_fn and opts.capabilities_fn(cmp_capabilities) or cmp_capabilities
   require("lspconfig")[server].setup({
+    root_dir = opts.root_dir,
     capabilities = capabilities,
     settings = opts.settings,
     on_attach = function(client)
@@ -258,8 +268,8 @@ for server, opts in pairs(language_servers) do
       vim.keymap.set("n", "<C-q>", vim.lsp.buf.references, map_opts)
       vim.keymap.set("n", "<Space>rn", vim.lsp.buf.rename, map_opts)
       if opts.disable_format then
-        client.server_capabilities.document_formatting = false
         client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
       else
         if opts.formatting_fn then
           vim.keymap.set("n", "<C-f>", opts.formatting_fn, map_opts)

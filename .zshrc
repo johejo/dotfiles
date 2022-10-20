@@ -12,6 +12,11 @@ export FZF_DEFAULT_OPTS="--layout=reverse"
 export EDITOR="nvim"
 export GPG_TTY=$(tty)
 export MANPAGER="nvim -c ASMANPAGER -"
+export HISTSIZE=99999
+export SAVEHIST=999999
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_reduce_blanks
 
 function gcd {
   cd "$(ghq root)/$(ghq list | fzf)/"
