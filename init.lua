@@ -1,6 +1,6 @@
 vim.cmd("packadd vim-jetpack")
 
-require("jetpack").setup({
+require("jetpack.paq")({
   { "tani/vim-jetpack", opt = 1 },
   "neovim/nvim-lspconfig",
   "b0o/schemastore.nvim",
@@ -45,7 +45,14 @@ require("jetpack").setup({
   "monaqa/dial.nvim",
   "yuki-yano/fern-preview.vim",
   "lambdalisue/vim-manpager",
+  "google/vim-jsonnet",
+  "EdenEast/nightfox.nvim",
+  "rebelot/kanagawa.nvim",
+  "bluz71/vim-moonfly-colors",
+  "rmehri01/onenord.nvim",
 })
+
+vim.cmd("colorscheme moonfly")
 
 vim.opt.swapfile = false
 vim.opt.number = true
@@ -63,7 +70,6 @@ vim.opt.ignorecase = true
 vim.opt.list = true
 vim.opt.listchars = "tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%"
 vim.opt.wrap = false
-vim.cmd("colorscheme srcery")
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
@@ -99,6 +105,7 @@ require("nvim-treesitter.configs").setup({
     "rust",
     "sql",
     "make",
+    "jsonnet",
   },
   highlight = {
     enable = true,
@@ -248,6 +255,9 @@ local language_servers = {
   denols = {
     root_dir = lspconfig.util.root_pattern("deno.json"),
   },
+  jsonnet_ls = {
+    cmd = { "jsonnet-language-server", "--tanka", "--lint", "--eval-diags" },
+  },
 }
 
 local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -259,6 +269,7 @@ for server, opts in pairs(language_servers) do
     root_dir = opts.root_dir,
     capabilities = capabilities,
     settings = opts.settings,
+    cmd = opts.cmd,
     on_attach = function(client)
       local map_opts = { buffer = true }
       vim.keymap.set("n", "H", vim.lsp.buf.hover, map_opts)
