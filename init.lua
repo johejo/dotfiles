@@ -52,7 +52,7 @@ require("jetpack.paq")({
   "rmehri01/onenord.nvim",
 })
 
-vim.cmd("colorscheme moonfly")
+vim.cmd("colorscheme srcery")
 
 vim.opt.swapfile = false
 vim.opt.number = true
